@@ -6,13 +6,13 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:14:57 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/04/21 04:45:54 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/04/21 19:25:36 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../inc/push.h"
+#include "../inc/push.h"
 
-int	ft_atoi(const char *str)
+int		ft_atoi(const char *str)
 {
 	int min;
 	int nb;
@@ -35,7 +35,7 @@ int	ft_atoi(const char *str)
 	return ((min % 2 == 0) ? nb : -nb);
 }
 
-int numcheck(char *str)
+int		numcheck(char *str)
 {
 	int index;
 	int temp;
@@ -46,14 +46,14 @@ int numcheck(char *str)
 		return (-2);
 	while (str[index])
 	{
-		if (! (str[index] <= '9' && str[index] >= '0') )
+		if (!(str[index] <= '9' && str[index] >= '0'))
 			return (-1);
 		index++;
 	}
 	return (0);
 }
 
-int	checksamenum(t_check *checker)
+int		checksamenum(t_check *checker)
 {
 	int index;
 	int index2;
@@ -74,7 +74,7 @@ int	checksamenum(t_check *checker)
 	return (0);
 }
 
-void smallestnumber(t_check *checker)
+void	smallestnumber(t_check *checker)
 {
 	int index;
 
@@ -94,11 +94,11 @@ void smallestnumber(t_check *checker)
 
 void	my_putstr(char *str)
 {
-	int index;
-	char c;
+	int		index;
+	char	c;
 
 	index = 0;
-	while(str[index])
+	while (str[index])
 	{
 		c = str[index];
 		write(1, &str[index], 1);

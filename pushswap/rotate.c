@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/21 02:15:04 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/04/21 19:14:18 by jcluzet          ###   ########.fr       */
+/*   Created: 2021/04/21 02:14:44 by jcluzet           #+#    #+#             */
+/*   Updated: 2021/04/21 19:22:43 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/checker.h"
+#include "../inc/push.h"
 
 int	rotatea(t_check *checker)
 {
@@ -27,6 +27,7 @@ int	rotatea(t_check *checker)
 		index++;
 	}
 	checker->a[index - 1] = temp;
+	printf("ra\n");
 	return (0);
 }
 
@@ -45,6 +46,7 @@ int	reverserotatea(t_check *checker)
 		index--;
 	}
 	checker->a[0] = temp;
+	my_putstr("rra\n");
 	return (0);
 }
 
@@ -63,6 +65,7 @@ int	reverserotateb(t_check *checker)
 		index--;
 	}
 	checker->b[0] = temp;
+	my_putstr("rrb\n");
 	return (0);
 }
 
@@ -81,5 +84,6 @@ int	rotateb(t_check *checker)
 		index++;
 	}
 	checker->b[index - 1] = temp;
+	my_putstr("srb\n");
 	return (0);
 }

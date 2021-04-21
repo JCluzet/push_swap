@@ -6,29 +6,59 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:15:34 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/04/21 04:03:36 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/04/21 18:58:00 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../inc/checker.h"
+#include "../inc/checker.h"
 
-int	stocktableau(t_check *checker, int argc, char **argv)
+int		findargs(int argc, char **argv)
 {
 	int index;
+	int pin;
+	int exit;
 
+	pin = 0;
+	exit = 0;
+	index = 1;
+	while (index < argc)
+	{
+		exit++;
+		while (argv[index][pin])
+		{
+			if ((argv[index][pin] < '0' || argv[index][pin] > '9') &&
+			(argv[index][pin] != ' '))
+				return (-1);
+			if (argv[index][pin] == ' ' && (argv[index][pin + 1] <= '9' &&
+			argv[index][pin + 1] >= '0'))
+				exit++;
+			pin++;
+		}
+		pin = 0;
+		index++;
+	}
+	return (exit);
+}
+
+int		stocktableau(t_check *checker, int argc, char **argv)
+{
+	int index;
+	int index2;
+	int pin;
+
+	index2 = 0;
+	pin = 0;
 	index = 0;
-
-	checker->args = argc - 1;
+	checker->args = findargs(argc, argv);
+	if (checker->args == -1)
+		return (-1);
 	checker->a = malloc(checker->args * sizeof(int));
 	checker->b = malloc(checker->args * sizeof(int));
-	while (index < checker->args)
+	while (index < argc - 1)
 	{
-		if (numcheck(argv[index+1]) == -1)
-			return (-1);
-		if (numcheck(argv[index+1]) == -2)
-			return (-2);
-		checker->a[index] = ft_atoi(argv[index+1]);
-		checker->b[index] = 0;
+		checker->a[index + index2] = ft_atoi(argv[index + 1]);
+		checker->b[index + index2] = 0;
+		stockmorenum(checker, argv, index, index2);
 		index++;
 	}
 	checker->max_a = checker->args;
@@ -36,7 +66,26 @@ int	stocktableau(t_check *checker, int argc, char **argv)
 	return (0);
 }
 
-int	ft_atoi(const char *str)
+void	stockmorenum(t_check *checker, char **argv, int index, int index2)
+{
+	int pin;
+
+	pin = 0;
+	while (argv[index + 1][pin])
+	{
+		if (argv[index + 1][pin] == ' ' && (argv[index + 1][pin + 1] <= '9'
+		&& argv[index + 1][pin + 1] >= '0'))
+		{
+			index2++;
+			checker->a[index + index2] = ft_atoi(argv[index + 1] + pin + 1);
+			checker->b[index + index2] = 0;
+		}
+		pin++;
+	}
+	pin = 0;
+}
+
+int		ft_atoi(const char *str)
 {
 	int min;
 	int nb;
@@ -59,35 +108,7 @@ int	ft_atoi(const char *str)
 	return ((min % 2 == 0) ? nb : -nb);
 }
 
-int	ft_strcmp(char *s1, char *s2)
-{
-	int i;
-
-	i = 0;
-	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
-		i++;
-	return (s1[i] - s2[i]);
-}
-
-int numcheck(char *str)
-{
-	int index;
-	double temp;
-
-	index = 0;
-	temp = atoi(str);
-	if (temp > 2147483647 || temp < -2147483647)
-		return (-2);
-	while (str[index])
-	{
-		if (! (str[index] <= '9' && str[index] >= '0'))
-			return (-1);
-		index++;
-	}
-	return (0);
-}
-
-int	checksamenum(t_check *checker)
+int		checksamenum(t_check *checker)
 {
 	int index;
 	int index2;

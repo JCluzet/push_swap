@@ -6,11 +6,11 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:15:09 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/04/21 15:40:47 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/04/21 19:13:20 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../inc/checker.h"
+#include "../inc/checker.h"
 
 int	swapa(t_check *checker)
 {
@@ -36,7 +36,7 @@ int	swapb(t_check *checker)
 	return (0);
 }
 
-int pusha(t_check *checker)
+int	pusha(t_check *checker)
 {
 	int index;
 
@@ -60,7 +60,7 @@ int pusha(t_check *checker)
 	return (0);
 }
 
-int pushb(t_check *checker)
+int	pushb(t_check *checker)
 {
 	int index;
 
