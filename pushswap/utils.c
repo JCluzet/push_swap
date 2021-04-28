@@ -12,10 +12,10 @@
 
 #include "../inc/push.h"
 
-int		ft_atoi(const char *str)
+long long int	ft_atoi(const char *str)
 {
 	int min;
-	int nb;
+	long long nb;
 
 	nb = 0;
 	min = 0;
@@ -65,7 +65,11 @@ int		checksamenum(t_check *checker)
 		while (index2 < checker->max_a)
 		{
 			if (checker->a[index] == checker->a[index2] && index2 != index)
+			{
+				checker->falseargs1 = index;
+				checker->falseargs2 = index2;
 				return (-1);
+			}
 			index2++;
 		}
 		index2 = 0;
@@ -95,12 +99,10 @@ void	smallestnumber(t_check *checker)
 void	my_putstr(char *str)
 {
 	int		index;
-	char	c;
 
 	index = 0;
 	while (str[index])
 	{
-		c = str[index];
 		write(1, &str[index], 1);
 		index++;
 	}

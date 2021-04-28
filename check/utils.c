@@ -26,8 +26,8 @@ int		findargs(int argc, char **argv)
 		exit++;
 		while (argv[index][pin])
 		{
-			if ((argv[index][pin] < '0' || argv[index][pin] > '9') &&
-			(argv[index][pin] != ' '))
+			if ((argv[index][pin] < '0' || argv[index][pin] > '9')
+			&& ((argv[index][pin] != ' ') && (argv[index][pin] != '-')))
 				return (-1);
 			if (argv[index][pin] == ' ' && (argv[index][pin + 1] <= '9' &&
 			argv[index][pin + 1] >= '0'))
@@ -44,10 +44,8 @@ int		stocktableau(t_check *checker, int argc, char **argv)
 {
 	int index;
 	int index2;
-	int pin;
 
 	index2 = 0;
-	pin = 0;
 	index = 0;
 	checker->args = findargs(argc, argv);
 	if (checker->args == -1)

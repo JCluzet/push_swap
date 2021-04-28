@@ -17,6 +17,7 @@ int		read_n_sort(t_check *checker)
 	char	*buf;
 	int		ret;
 
+	//buf = malloc(sizeof(char) * 4080);
 	ret = get_next_line(0, &buf);
 	while (ret > 0)
 	{
@@ -27,6 +28,7 @@ int		read_n_sort(t_check *checker)
 		if (buf[0] == '\0')
 			ret = -1;
 	}
+	free(buf);
 	if (checkifsort(checker) == 1)
 		my_putstr("KO\n");
 	else
@@ -80,24 +82,32 @@ int		dispatcheur(t_check *checker, char *buf)
 int		main(int argc, char **argv)
 {
 	t_check checkerr;
+	int pin;
 
 	if (argc == 1)
+		my_putstr("Error\nMissing arguments");
+	if (argc == 1)
 		return (0);
-	if (stocktableau(&checkerr, argc, argv) == -1)
+	pin = stocktableau(&checkerr, argc, argv);
+	if (pin == -1 || pin == 2)
 	{
-		my_putstr("Error\nSome arguments are not integers\n");
-		return (0);
-	}
-	if (stocktableau(&checkerr, argc, argv) == -2)
-	{
-		my_putstr("Error\nSome arguments are bigger than an integer\n");
+		if (pin == -1)
+			my_putstr("Error\nSome arguments are not integers\n");
+		if (pin == -2)
+			my_putstr("Error\nSome arguments are bigger than an integer\n");
+		free(checkerr.a);
+		free(checkerr.b);
 		return (0);
 	}
 	if (checksamenum(&checkerr) == -1)
 	{
 		my_putstr("Error\nThere are duplicates");
+		free(checkerr.a);
+		free(checkerr.b);
 		return (0);
 	}
 	read_n_sort(&checkerr);
+	free(checkerr.a);
+	free(checkerr.b);
 	return (0);
 }

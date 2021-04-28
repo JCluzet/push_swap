@@ -27,10 +27,8 @@ void		sort2numbers(t_check *checker)
 
 int			firstswap(t_check *checker)
 {
-	int index;
 	int temp;
 
-	index = 0;
 	temp = checker->a[0];
 	checker->a[0] = checker->a[1];
 	checker->a[1] = temp;

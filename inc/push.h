@@ -25,12 +25,15 @@ typedef struct	s_check
 	int			max_b;
 	int			smallest_a;
 	int			pos_a;
+	int			falseargs;
+	int			falseargs1;
+	int			falseargs2;
 	int			args;
 }				t_check;
 
 int				stocktableau(t_check *checker, int argc, char **argv);
-void			stockmorenum(t_check *checker, char **argv, int index, int index2);
-int				ft_atoi(const char *str);
+int			stockmorenum(t_check *checker, char **argv, int index, int index2);
+long long int		ft_atoi(const char *str);
 int				findalgo(t_check *checker);
 int				numcheck(char *str);
 int				checkifsort(t_check *checker);

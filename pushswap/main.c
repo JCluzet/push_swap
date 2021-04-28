@@ -27,7 +27,7 @@ int		findalgo(t_check *checker)
 	return (0);
 }
 
-int		findargs(int argc, char **argv)
+int		findargs(int argc, char **argv, t_check *checker)
 {
 	int			index;
 	int			pin;
@@ -42,8 +42,11 @@ int		findargs(int argc, char **argv)
 		while (argv[index][pin])
 		{
 			if ((argv[index][pin] < '0' || argv[index][pin] > '9')
-			&& (argv[index][pin] != ' '))
+			&& ((argv[index][pin] != ' ') && (argv[index][pin] != '-')))
+			{
+				checker->falseargs = index;
 				return (-1);
+			}
 			if (argv[index][pin] == ' ' && (argv[index][pin + 1] <= '9'
 			&& argv[index][pin + 1] >= '0'))
 				exit++;
@@ -59,21 +62,30 @@ int		stocktableau(t_check *checker, int argc, char **argv)
 {
 	int		index;
 	int		index2;
-	int		pin;
+	long long int num;
 
 	index2 = 0;
-	pin = 0;
 	index = 0;
-	checker->args = findargs(argc, argv);
+	checker->args = findargs(argc, argv, checker);
 	if (checker->args == -1)
 		return (-1);
 	checker->a = malloc(checker->args * sizeof(int));
 	checker->b = malloc(checker->args * sizeof(int));
 	while (index < argc - 1)
 	{
-		checker->a[index + index2] = ft_atoi(argv[index + 1]);
+		num = ft_atoi(argv[index + 1]);
+		if (num > 2147483647 || num < -2147483648)
+		{
+			checker->falseargs = index;
+			return(-2);
+		}
+		checker->a[index + index2] = (int)num;
 		checker->b[index + index2] = 0;
-		stockmorenum(checker, argv, index, index2);
+		if (stockmorenum(checker, argv, index, index2) == -2)
+		{
+			checker->falseargs = index;
+			return(-2);
+		}
 		index++;
 	}
 	checker->max_a = checker->args;
@@ -81,9 +93,10 @@ int		stocktableau(t_check *checker, int argc, char **argv)
 	return (0);
 }
 
-void	stockmorenum(t_check *checker, char **argv, int index, int index2)
+int	stockmorenum(t_check *checker, char **argv, int index, int index2)
 {
 	int			pin;
+	long long int num;
 
 	pin = 0;
 	while (argv[index + 1][pin])
@@ -92,39 +105,61 @@ void	stockmorenum(t_check *checker, char **argv, int index, int index2)
 		&& argv[index + 1][pin + 1] >= '0'))
 		{
 			index2++;
-			checker->a[index + index2] = ft_atoi(argv[index + 1] + pin + 1);
+			num = ft_atoi(argv[index + 1] + pin + 1);
+			if (num > 2147483647 || num < -2147483648)
+				return(-2);
+			checker->a[index + index2] = (int)num;
 			checker->b[index + index2] = 0;
 		}
 		pin++;
 	}
 	pin = 0;
+	return(0);
 }
 
 int		main(int argc, char **argv)
 {
 	t_check		checkerr;
-	int			check;
+	int			pin;
 
 	if (argc == 1)
 		my_putstr("Error\nMissing arguments");
 	if (argc == 1)
 		return (0);
-	check = stocktableau(&checkerr, argc, argv);
-	if (check == -1)
+	pin = stocktableau(&checkerr, argc, argv);
+	if (pin == -1 || pin == -2)
 	{
-		my_putstr("Error\nNon-conforming arguments, numbers only");
-		return (0);
-	}
-	if (check == -2)
-	{
-		my_putstr("Error\nSome arguments are bigger than an integer\n");
+		if (pin == -1)
+		{
+			//my_putstr("Error\nArguments");
+			printf("Error\nArguments %d are incorrect\n", checkerr.falseargs);
+			//my_putstr("are not integers\n");
+		}
+		if (pin == -2)
+		{
+			//my_putstr("Error\nArguments");
+			printf("Error\nArguments %d are bigger than an integer\n", checkerr.falseargs + 1);
+			//my_putstr("are bigger than an integer\n");
+			free(checkerr.a);
+			free(checkerr.b);
+		}
 		return (0);
 	}
 	if (checksamenum(&checkerr) == -1)
 	{
-		my_putstr("Error\nDuplicate arguments");
+		//my_putstr("Error\nDuplicate arguments");
+		printf("Error\nArguments %d and %d are the same\n", checkerr.falseargs1 + 1, checkerr.falseargs2 + 1);
+		free(checkerr.a);
+		free(checkerr.b);
 		return (0);
 	}
 	findalgo(&checkerr);
+	free(checkerr.a);
+	free(checkerr.b);
 	return (0);
 }
+
+// Check bigger than an integer dans le checker et indiquer l'arg qui foire dedans
+// Proteger tout les mallocs
+// Verifier des free eventuels en + 
+// Faire les 2 bonus avec un beau affichage 
