@@ -6,81 +6,87 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:15:34 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/04/29 04:30:55 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/04/29 17:59:31 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/checker.h"
 
-int				findargs(int argc, char **argv, t_check *checker)
+int		findargs(int argc, char **argv, t_check *checker)
 {
-	int index;
-	int pin;
-	int exit;
-
-	pin = 0;
-	exit = 0;
-	index = 1;
-	while (index < argc)
+	checker->pin = 0;
+	checker->exit = 0;
+	while (checker->index < argc)
 	{
-		exit++;
-		while (argv[index][pin])
+		checker->exit++;
+		while (argv[checker->index][checker->pin])
 		{
-			if ((argv[index][pin] < '0' || argv[index][pin] > '9')
-			&& ((argv[index][pin] != ' ') && (argv[index][pin] != '-')))
+			if ((argv[checker->index][checker->pin] < '0' ||
+			argv[checker->index][checker->pin] > '9')
+			&& ((argv[checker->index][checker->pin] != ' ')
+			&& (argv[checker->index][checker->pin] != '-')))
 			{
-				checker->falseargs = index;
+				checker->falseargs = checker->index;
 				return (-1);
 			}
-			if (argv[index][pin] == ' ' && (argv[index][pin + 1] <= '9' &&
-			argv[index][pin + 1] >= '0'))
-				exit++;
-			pin++;
+			if (argv[checker->index][checker->pin] == ' ' &&
+			(argv[checker->index][checker->pin + 1] <= '9'
+			&& argv[checker->index][checker->pin + 1] >= '0'))
+				checker->exit++;
+			checker->pin++;
 		}
-		pin = 0;
-		index++;
+		checker->pin = 0;
+		checker->index++;
 	}
-	return (exit);
+	return (checker->exit);
 }
 
-int				stocktableau(t_check *checker, int argc, char **argv)
+int		filltab(t_check *checker, int argc, char **argv)
 {
-	int				index;
-	int				index2;
 	long long int	num;
+	int				falsearg;
 
-	index2 = 0;
-	index = 0;
+	falsearg = -1;
+	while (checker->index < argc - 1)
+	{
+		num = ft_atoi(argv[checker->index + 1]);
+		if (num > 2147483647 || num < -2147483648)
+		{
+			checker->falseargs = checker->index;
+			return (-2);
+		}
+		checker->a[checker->index + checker->index2] = (int)num;
+		checker->b[checker->index + checker->index2] = 0;
+		if (stockmorenum(checker, argv, checker->index, checker->index2) == -2)
+		{
+			checker->falseargs = checker->index;
+			return (-2);
+		}
+		checker->index++;
+	}
+	return (0);
+}
+
+int		stocktableau(t_check *checker, int argc, char **argv)
+{
+	checker->index2 = 0;
+	checker->index = 1;
 	checker->args = findargs(argc, argv, checker);
+	checker->index = 0;
 	if (checker->args == -1)
 		return (-1);
 	checker->a = malloc(checker->args * sizeof(int));
 	checker->b = malloc(checker->args * sizeof(int));
 	if (checker->a == NULL || checker->b == NULL)
 		return (-3);
-	while (index < argc - 1)
-	{
-		num = ft_atoi(argv[index + 1]);
-		if (num > 2147483647 || num < -2147483648)
-		{
-			checker->falseargs = index;
-			return (-2);
-		}
-		checker->a[index + index2] = (int)num;
-		checker->b[index + index2] = 0;
-		if (stockmorenum(checker, argv, index, index2) == -2)
-		{
-			checker->falseargs = index;
-			return (-2);
-		}
-		index++;
-	}
+	if (filltab(checker, argc, argv) == -2)
+		return (-2);
 	checker->max_a = checker->args;
 	checker->max_b = 0;
 	return (0);
 }
 
-int				stockmorenum(t_check *checker, char **argv,
+int		stockmorenum(t_check *checker, char **argv,
 				int index, int index2)
 {
 	int				pin;
@@ -105,30 +111,7 @@ int				stockmorenum(t_check *checker, char **argv,
 	return (0);
 }
 
-long long int	ft_atoi(const char *str)
-{
-	int				min;
-	long long int	nb;
-
-	nb = 0;
-	min = 0;
-	while (*str && ((*str >= '\t' && *str <= '\r') || *str == ' '))
-		str++;
-	if (*str == '+' || *str == '-')
-	{
-		if (*str == '-')
-			min++;
-		str++;
-	}
-	while (*str && (*str <= '9' && *str >= '0'))
-	{
-		nb = nb * 10 + (*str - 48);
-		str++;
-	}
-	return ((min % 2 == 0) ? nb : -nb);
-}
-
-int				checksamenum(t_check *checker)
+int		checksamenum(t_check *checker)
 {
 	unsigned long int index;
 	unsigned long int index2;

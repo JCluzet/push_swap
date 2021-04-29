@@ -6,7 +6,7 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:15:24 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/04/29 04:34:58 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/04/29 17:56:35 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ typedef struct			s_check
 	unsigned long int	max_a;
 	unsigned long int	max_b;
 	int					args;
+	int					index;
+	int					index2;
+	int					pin;
+	int					exit;
 	int					falseargs;
 	int					falseargs1;
 	int					falseargs2;

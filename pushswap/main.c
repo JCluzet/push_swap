@@ -6,7 +6,7 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:14:34 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/04/29 05:01:30 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/04/29 17:51:16 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,47 +27,55 @@ int		findalgo(t_check *checker)
 	return (0);
 }
 
+int		filltab(t_check *checker, int argc, char **argv)
+{
+	long long int	num;
+	int				falsearg;
+
+	falsearg = -1;
+	while (checker->index < argc - 1)
+	{
+		num = ft_atoi(argv[checker->index + 1]);
+		if (num > 2147483647 || num < -2147483648)
+		{
+			checker->falseargs = checker->index;
+			return (-2);
+		}
+		checker->a[checker->index + checker->index2] = (int)num;
+		checker->b[checker->index + checker->index2] = 0;
+		if (stockmorenum(checker, argv, checker->index, checker->index2) == -2)
+		{
+			checker->falseargs = checker->index;
+			return (-2);
+		}
+		checker->index++;
+	}
+	return (0);
+}
+
 int		stocktableau(t_check *checker, int argc, char **argv)
 {
-	int		index;
-	int		index2;
-	long long int num;
-
-	index2 = 0;
-	index = 0;
+	checker->index2 = 0;
+	checker->index = 1;
 	checker->args = findargs(argc, argv, checker);
+	checker->index = 0;
 	if (checker->args == -1)
 		return (-1);
 	checker->a = malloc(checker->args * sizeof(int));
 	checker->b = malloc(checker->args * sizeof(int));
 	if (checker->a == NULL || checker->b == NULL)
 		return (-3);
-	while (index < argc - 1)
-	{
-		num = ft_atoi(argv[index + 1]);
-		if (num > 2147483647 || num < -2147483648)
-		{
-			checker->falseargs = index;
-			return(-2);
-		}
-		checker->a[index + index2] = (int)num;
-		checker->b[index + index2] = 0;
-		if (stockmorenum(checker, argv, index, index2) == -2)
-		{
-			checker->falseargs = index;
-			return(-2);
-		}
-		index++;
-	}
+	if (filltab(checker, argc, argv) == -2)
+		return (-2);
 	checker->max_a = checker->args;
 	checker->max_b = 0;
 	return (0);
 }
 
-int	stockmorenum(t_check *checker, char **argv, int index, int index2)
+int		stockmorenum(t_check *checker, char **argv, int index, int index2)
 {
-	int			pin;
-	long long int num;
+	int				pin;
+	long long int	num;
 
 	pin = 0;
 	while (argv[index + 1][pin])
@@ -78,14 +86,14 @@ int	stockmorenum(t_check *checker, char **argv, int index, int index2)
 			index2++;
 			num = ft_atoi(argv[index + 1] + pin + 1);
 			if (num > 2147483647 || num < -2147483648)
-				return(-2);
+				return (-2);
 			checker->a[index + index2] = (int)num;
 			checker->b[index + index2] = 0;
 		}
 		pin++;
 	}
 	pin = 0;
-	return(0);
+	return (0);
 }
 
 int		main(int argc, char **argv)
@@ -113,7 +121,6 @@ int		main(int argc, char **argv)
 	return (0);
 }
 
-
-// Normer pushswap
+// Normer avec la V3
 // Faire les 2 bonus avec un beau affichage
-// Optimiser pour 100 nb et + 
+// Optimiser pour 100 nb et +
