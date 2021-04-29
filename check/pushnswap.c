@@ -6,7 +6,7 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:15:09 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/04/29 03:27:09 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/04/29 04:56:49 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	swapb(t_check *checker)
 
 int	pusha(t_check *checker)
 {
-	unsigned long int index;
+	long int index;
 
 	index = checker->max_a - 1;
 	if (checker->max_b < 1)
@@ -50,7 +50,7 @@ int	pusha(t_check *checker)
 	}
 	checker->a[0] = checker->b[0];
 	index = 1;
-	while (index < checker->max_b)
+	while ((unsigned)index < checker->max_b)
 	{
 		checker->b[index - 1] = checker->b[index];
 		index++;
@@ -62,7 +62,7 @@ int	pusha(t_check *checker)
 
 int	pushb(t_check *checker)
 {
-	unsigned long int index;
+	long int index;
 
 	index = checker->max_b - 1;
 	if (checker->max_a < 1)
@@ -74,7 +74,7 @@ int	pushb(t_check *checker)
 	}
 	checker->b[0] = checker->a[0];
 	index = 1;
-	while (index < checker->max_a)
+	while ((unsigned)index < checker->max_a)
 	{
 		checker->a[index - 1] = checker->a[index];
 		index++;
