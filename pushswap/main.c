@@ -6,7 +6,7 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:14:34 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/04/29 03:54:19 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/04/29 04:13:33 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int		stocktableau(t_check *checker, int argc, char **argv)
 		return (-1);
 	checker->a = malloc(checker->args * sizeof(int));
 	checker->b = malloc(checker->args * sizeof(int));
-
+	if (checker->a == NULL || checker->b == NULL)
+		return (-3);
 	while (index < argc - 1)
 	{
 		num = ft_atoi(argv[index + 1]);
@@ -112,6 +113,5 @@ int		main(int argc, char **argv)
 	return (0);
 }
 
-// Proteger tout les mallocs
 // Verifier des free eventuels en +
 // Faire les 2 bonus avec un beau affichage

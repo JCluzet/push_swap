@@ -6,7 +6,7 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:15:40 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/04/29 03:03:54 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/04/29 04:11:29 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,20 @@ int		numcheck(char *str)
 	return (0);
 }
 
+int checkargs2(t_check *checker)
+{
+	if (checksamenum(checker) == -1)
+	{
+		my_putstr("Error\nArguments ");
+		ft_putnbr(checker->falseargs1 + 1);
+		my_putstr(" and ");
+		ft_putnbr(checker->falseargs2 + 1);
+		my_putstr(" or more are the same\n");
+		return(0);
+	}
+	return (1);
+}
+
 int		checkargs(t_check *checker, int pin)
 {
 	if (pin == -1)
@@ -68,14 +82,11 @@ int		checkargs(t_check *checker, int pin)
 		my_putstr(" or more, are bigger than an integer\n");
 		return(0);
 	}
-	if (checksamenum(checker) == -1)
-	{
-		my_putstr("Error\nArguments ");
-		ft_putnbr(checker->falseargs1 + 1);
-		my_putstr(" and ");
-		ft_putnbr(checker->falseargs2 + 1);
-		my_putstr(" or more are the same\n");
-		return(0);
-	}
+	if (pin == -3)
+		my_putstr("Malloc error\n");
+	if (pin == -3)
+		return (0);
+	if (checkargs2(checker) == 0)
+		return (0);
 	return(1);
 }
