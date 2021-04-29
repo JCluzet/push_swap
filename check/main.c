@@ -6,7 +6,7 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:15:40 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/04/29 03:25:11 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/04/29 04:44:56 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 int		read_n_sort(t_check *checker)
 {
-	char	*buf;
-	int		ret;
+	char				*buf;
+	int					ret;
 
-	//buf = malloc(sizeof(char) * 4080);
 	ret = get_next_line(0, &buf);
 	while (ret > 0)
 	{
@@ -81,9 +80,9 @@ int		dispatcheur(t_check *checker, char *buf)
 
 int		main(int argc, char **argv)
 {
-	t_check checkerr;
-	int pin;
-	int pin2;
+	t_check				checkerr;
+	int					pin;
+	int					pin2;
 
 	if (argc == 1)
 		my_putstr("Error\nMissing arguments");

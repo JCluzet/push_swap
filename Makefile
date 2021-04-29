@@ -6,7 +6,7 @@
 #    By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/21 01:05:24 by jcluzet           #+#    #+#              #
-#    Updated: 2021/04/29 03:03:41 by jcluzet          ###   ########.fr        #
+#    Updated: 2021/04/29 04:37:15 by jcluzet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,8 @@ SRC =				check/main.c \
 					check/utils3.c \
 					GNL/get_next_line_utils.c \
 					GNL/get_next_line.c \
-					operations_incheck/pushnswap.c \
-					operations_incheck/rotate.c
+					check/pushnswap.c \
+					check/rotate.c
 
 SRC_2 =				pushswap/main.c \
 					pushswap/utils.c \

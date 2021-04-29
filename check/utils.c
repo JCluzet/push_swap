@@ -6,13 +6,13 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:15:34 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/04/29 04:01:36 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/04/29 04:30:55 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/checker.h"
 
-int		findargs(int argc, char **argv, t_check *checker)
+int				findargs(int argc, char **argv, t_check *checker)
 {
 	int index;
 	int pin;
@@ -43,11 +43,11 @@ int		findargs(int argc, char **argv, t_check *checker)
 	return (exit);
 }
 
-int		stocktableau(t_check *checker, int argc, char **argv)
+int				stocktableau(t_check *checker, int argc, char **argv)
 {
-	int index;
-	int index2;
-	long long int num;
+	int				index;
+	int				index2;
+	long long int	num;
 
 	index2 = 0;
 	index = 0;
@@ -64,14 +64,14 @@ int		stocktableau(t_check *checker, int argc, char **argv)
 		if (num > 2147483647 || num < -2147483648)
 		{
 			checker->falseargs = index;
-			return(-2);
+			return (-2);
 		}
 		checker->a[index + index2] = (int)num;
 		checker->b[index + index2] = 0;
 		if (stockmorenum(checker, argv, index, index2) == -2)
 		{
 			checker->falseargs = index;
-			return(-2);
+			return (-2);
 		}
 		index++;
 	}
@@ -80,10 +80,11 @@ int		stocktableau(t_check *checker, int argc, char **argv)
 	return (0);
 }
 
-int	stockmorenum(t_check *checker, char **argv, int index, int index2)
+int				stockmorenum(t_check *checker, char **argv,
+				int index, int index2)
 {
-	int			pin;
-	long long int num;
+	int				pin;
+	long long int	num;
 
 	pin = 0;
 	while (argv[index + 1][pin])
@@ -101,13 +102,13 @@ int	stockmorenum(t_check *checker, char **argv, int index, int index2)
 		pin++;
 	}
 	pin = 0;
-	return(0);
+	return (0);
 }
 
-long long int		ft_atoi(const char *str)
+long long int	ft_atoi(const char *str)
 {
-	int min;
-	long long int nb;
+	int				min;
+	long long int	nb;
 
 	nb = 0;
 	min = 0;
@@ -127,7 +128,7 @@ long long int		ft_atoi(const char *str)
 	return ((min % 2 == 0) ? nb : -nb);
 }
 
-int		checksamenum(t_check *checker)
+int				checksamenum(t_check *checker)
 {
 	unsigned long int index;
 	unsigned long int index2;

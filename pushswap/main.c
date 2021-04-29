@@ -6,7 +6,7 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:14:34 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/04/29 04:13:33 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/04/29 04:23:37 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,4 @@ int		main(int argc, char **argv)
 	return (0);
 }
 
-// Verifier des free eventuels en +
 // Faire les 2 bonus avec un beau affichage
