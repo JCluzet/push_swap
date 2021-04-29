@@ -6,7 +6,7 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:15:40 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/04/29 05:07:13 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/04/29 05:09:17 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		read_n_sort(t_check *checker)
 	while (ret > 0)
 	{
 		if (dispatcheur(checker, buf) == -1)
-			my_putstr("      --> Argument non reconnu\n");
+			my_putstr("      --> Error | Unknown Argument \n");
 		free(buf);
 		ret = get_next_line(0, &buf);
 		if (buf[0] == '\0')
