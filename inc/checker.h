@@ -6,7 +6,7 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:15:24 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/04/21 19:29:28 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/04/29 03:51:02 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,22 @@ typedef struct	s_check
 {
 	int			*a;
 	int			*b;
-	int			max_a;
-	int			max_b;
+	unsigned long int			max_a;
+	unsigned long int			max_b;
 	int			args;
+	int			falseargs;
+	int			falseargs1;
+	int			falseargs2;
 }				t_check;
 
-int				ft_atoi(const char *str);
+long long int				ft_atoi(const char *str);
 int				swapa(t_check *checker);
 int				swapb(t_check *checker);
+int				findargs(int argc, char **argv, t_check *checker);
 void			my_putstr(char *str);
 int				pusha(t_check *checker);
+void			ft_putnbr(int nb);
+void			ft_putchar(char c);
 int				pushb(t_check *checker);
 int				checksamenum(t_check *checker);
 int				numcheck(char *str);
@@ -42,8 +48,9 @@ int				ft_strcmp(char *s1, char *s2);
 int				checkifsort(t_check *checker);
 int				get_next_line(int fd, char **line);
 int				dispatcheur(t_check *checker, char *buf);
+int				checkargs(t_check *checker, int pin);
 int				stocktableau(t_check *checker, int argc, char **argv);
-void			stockmorenum(t_check *checker, char **argv,
+int				stockmorenum(t_check *checker, char **argv,
 				int index, int index2);
 int				findmoreargs(char **argv, int argc);
 

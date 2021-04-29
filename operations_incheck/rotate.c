@@ -6,7 +6,7 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:15:04 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/04/21 19:14:18 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/04/29 03:28:03 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	rotatea(t_check *checker)
 {
 	int temp;
-	int index;
+	unsigned long int index;
 
 	index = 1;
 	if (checker->max_a < 1)
@@ -33,7 +33,7 @@ int	rotatea(t_check *checker)
 int	reverserotatea(t_check *checker)
 {
 	int temp;
-	int index;
+	unsigned long int index;
 
 	index = checker->max_a - 1;
 	if (checker->max_a < 1)
@@ -51,7 +51,7 @@ int	reverserotatea(t_check *checker)
 int	reverserotateb(t_check *checker)
 {
 	int temp;
-	int index;
+	unsigned long int index;
 
 	index = checker->max_b - 1;
 	if (checker->max_b < 1)
@@ -69,7 +69,7 @@ int	reverserotateb(t_check *checker)
 int	rotateb(t_check *checker)
 {
 	int temp;
-	int index;
+	unsigned long int index;
 
 	index = 0;
 	if (checker->max_b < 1)

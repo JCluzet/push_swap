@@ -6,7 +6,7 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:15:40 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/04/21 19:29:19 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/04/29 03:25:11 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		read_n_sort(t_check *checker)
 
 int		checkifsort(t_check *checker)
 {
-	int		index;
+	unsigned long int	index;
 
 	index = 0;
 	while (index < checker->max_a - 1)
@@ -83,29 +83,21 @@ int		main(int argc, char **argv)
 {
 	t_check checkerr;
 	int pin;
+	int pin2;
 
 	if (argc == 1)
 		my_putstr("Error\nMissing arguments");
 	if (argc == 1)
 		return (0);
 	pin = stocktableau(&checkerr, argc, argv);
-	if (pin == -1 || pin == 2)
+	if ((pin2 = checkargs(&checkerr, pin)) == 0)
 	{
-		if (pin == -1)
-			my_putstr("Error\nSome arguments are not integers\n");
-		if (pin == -2)
-			my_putstr("Error\nSome arguments are bigger than an integer\n");
 		free(checkerr.a);
 		free(checkerr.b);
 		return (0);
 	}
-	if (checksamenum(&checkerr) == -1)
-	{
-		my_putstr("Error\nThere are duplicates");
-		free(checkerr.a);
-		free(checkerr.b);
+	if (pin2 == -1)
 		return (0);
-	}
 	read_n_sort(&checkerr);
 	free(checkerr.a);
 	free(checkerr.b);

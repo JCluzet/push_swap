@@ -5,51 +5,42 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/21 02:15:40 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/04/29 03:03:54 by jcluzet          ###   ########.fr       */
+/*   Created: 2021/04/21 02:14:57 by jcluzet           #+#    #+#             */
+/*   Updated: 2021/04/29 02:54:42 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/checker.h"
+#include "../inc/push.h"
 
-void	my_putstr(char *str)
+int		findargs(int argc, char **argv, t_check *checker)
 {
-	int index;
+	int			index;
+	int			pin;
+	int			exit;
 
-	index = 0;
-	while (str[index])
+	pin = 0;
+	exit = 0;
+	index = 1;
+	while (index < argc)
 	{
-		write(1, &str[index], 1);
+		exit++;
+		while (argv[index][pin])
+		{
+			if ((argv[index][pin] < '0' || argv[index][pin] > '9')
+			&& ((argv[index][pin] != ' ') && (argv[index][pin] != '-')))
+			{
+				checker->falseargs = index;
+				return (-1);
+			}
+			if (argv[index][pin] == ' ' && (argv[index][pin + 1] <= '9'
+			&& argv[index][pin + 1] >= '0'))
+				exit++;
+			pin++;
+		}
+		pin = 0;
 		index++;
 	}
-}
-
-int		ft_strcmp(char *s1, char *s2)
-{
-	int i;
-
-	i = 0;
-	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
-		i++;
-	return (s1[i] - s2[i]);
-}
-
-int		numcheck(char *str)
-{
-	int		index;
-	double	temp;
-
-	index = 0;
-	temp = atoi(str);
-	if (temp > 2147483647 || temp < -2147483647)
-		return (-2);
-	while (str[index])
-	{
-		if (!(str[index] <= '9' && str[index] >= '0'))
-			return (-1);
-		index++;
-	}
-	return (0);
+	return (exit);
 }
 
 int		checkargs(t_check *checker, int pin)

@@ -6,7 +6,7 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:14:52 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/04/21 19:24:15 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/04/29 03:31:39 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,7 @@ void		sortmultinumbers(t_check *checker)
 	{
 		smallestnumber(checker);
 		if (checker->pos_a == 0)
-		{
 			pushb(checker);
-		}
 		else if (checker->pos_a < checker->max_a / 2)
 			rotatea(checker);
 		else
@@ -92,7 +90,7 @@ void		sortmultinumbers(t_check *checker)
 
 int			checkifsort(t_check *checker)
 {
-	int index;
+	unsigned long int index;
 
 	index = 0;
 	while (index < checker->max_a - 1)

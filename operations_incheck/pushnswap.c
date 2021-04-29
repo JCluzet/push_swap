@@ -6,7 +6,7 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:15:09 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/04/21 19:13:20 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/04/29 03:27:09 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	swapb(t_check *checker)
 
 int	pusha(t_check *checker)
 {
-	int index;
+	unsigned long int index;
 
 	index = checker->max_a - 1;
 	if (checker->max_b < 1)
@@ -62,7 +62,7 @@ int	pusha(t_check *checker)
 
 int	pushb(t_check *checker)
 {
-	int index;
+	unsigned long int index;
 
 	index = checker->max_b - 1;
 	if (checker->max_a < 1)

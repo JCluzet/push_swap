@@ -6,7 +6,7 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:14:34 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/04/21 19:19:57 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/04/29 03:54:19 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,37 +27,6 @@ int		findalgo(t_check *checker)
 	return (0);
 }
 
-int		findargs(int argc, char **argv, t_check *checker)
-{
-	int			index;
-	int			pin;
-	int			exit;
-
-	pin = 0;
-	exit = 0;
-	index = 1;
-	while (index < argc)
-	{
-		exit++;
-		while (argv[index][pin])
-		{
-			if ((argv[index][pin] < '0' || argv[index][pin] > '9')
-			&& ((argv[index][pin] != ' ') && (argv[index][pin] != '-')))
-			{
-				checker->falseargs = index;
-				return (-1);
-			}
-			if (argv[index][pin] == ' ' && (argv[index][pin + 1] <= '9'
-			&& argv[index][pin + 1] >= '0'))
-				exit++;
-			pin++;
-		}
-		pin = 0;
-		index++;
-	}
-	return (exit);
-}
-
 int		stocktableau(t_check *checker, int argc, char **argv)
 {
 	int		index;
@@ -71,6 +40,7 @@ int		stocktableau(t_check *checker, int argc, char **argv)
 		return (-1);
 	checker->a = malloc(checker->args * sizeof(int));
 	checker->b = malloc(checker->args * sizeof(int));
+
 	while (index < argc - 1)
 	{
 		num = ft_atoi(argv[index + 1]);
@@ -121,45 +91,27 @@ int		main(int argc, char **argv)
 {
 	t_check		checkerr;
 	int			pin;
+	int			pin2;
 
 	if (argc == 1)
 		my_putstr("Error\nMissing arguments");
 	if (argc == 1)
 		return (0);
 	pin = stocktableau(&checkerr, argc, argv);
-	if (pin == -1 || pin == -2)
+	if ((pin2 = checkargs(&checkerr, pin)) == 0)
 	{
-		if (pin == -1)
-		{
-			//my_putstr("Error\nArguments");
-			printf("Error\nArguments %d are incorrect\n", checkerr.falseargs);
-			//my_putstr("are not integers\n");
-		}
-		if (pin == -2)
-		{
-			//my_putstr("Error\nArguments");
-			printf("Error\nArguments %d are bigger than an integer\n", checkerr.falseargs + 1);
-			//my_putstr("are bigger than an integer\n");
-			free(checkerr.a);
-			free(checkerr.b);
-		}
-		return (0);
-	}
-	if (checksamenum(&checkerr) == -1)
-	{
-		//my_putstr("Error\nDuplicate arguments");
-		printf("Error\nArguments %d and %d are the same\n", checkerr.falseargs1 + 1, checkerr.falseargs2 + 1);
 		free(checkerr.a);
 		free(checkerr.b);
 		return (0);
 	}
+	if (pin2 == -1)
+		return (0);
 	findalgo(&checkerr);
 	free(checkerr.a);
 	free(checkerr.b);
 	return (0);
 }
 
-// Check bigger than an integer dans le checker et indiquer l'arg qui foire dedans
 // Proteger tout les mallocs
-// Verifier des free eventuels en + 
-// Faire les 2 bonus avec un beau affichage 
+// Verifier des free eventuels en +
+// Faire les 2 bonus avec un beau affichage

@@ -6,7 +6,7 @@
 #    By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/21 01:05:24 by jcluzet           #+#    #+#              #
-#    Updated: 2021/04/21 19:28:43 by jcluzet          ###   ########.fr        #
+#    Updated: 2021/04/29 03:03:41 by jcluzet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ OBJ_PATH = ./
 SRC =				check/main.c \
 					check/utils.c \
 					check/utils2.c \
+					check/utils3.c \
 					GNL/get_next_line_utils.c \
 					GNL/get_next_line.c \
 					operations_incheck/pushnswap.c \
@@ -27,6 +28,7 @@ SRC =				check/main.c \
 
 SRC_2 =				pushswap/main.c \
 					pushswap/utils.c \
+					pushswap/utils2.c \
 					pushswap/rotate.c \
 					pushswap/pushandswap.c \
 					pushswap/sort_per_num.c

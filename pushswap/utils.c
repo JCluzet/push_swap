@@ -6,7 +6,7 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:14:57 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/04/21 19:25:36 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/04/29 03:28:59 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,28 +35,10 @@ long long int	ft_atoi(const char *str)
 	return ((min % 2 == 0) ? nb : -nb);
 }
 
-int		numcheck(char *str)
-{
-	int index;
-	int temp;
-
-	index = 0;
-	temp = atoi(str);
-	if (temp > 2147483647 || temp < -2147483647)
-		return (-2);
-	while (str[index])
-	{
-		if (!(str[index] <= '9' && str[index] >= '0'))
-			return (-1);
-		index++;
-	}
-	return (0);
-}
-
 int		checksamenum(t_check *checker)
 {
-	int index;
-	int index2;
+	unsigned long int index;
+	unsigned long int index2;
 
 	index = 0;
 	index2 = 0;
@@ -80,7 +62,7 @@ int		checksamenum(t_check *checker)
 
 void	smallestnumber(t_check *checker)
 {
-	int index;
+	unsigned long int index;
 
 	index = 1;
 	checker->smallest_a = checker->a[0];
@@ -106,4 +88,27 @@ void	my_putstr(char *str)
 		write(1, &str[index], 1);
 		index++;
 	}
+}
+
+void ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void  ft_putnbr(int nb)
+{
+  if (nb < 0)
+   {
+     ft_putchar('-');
+     nb = nb * -1;
+   }
+  if (nb >= 10)
+   {
+     ft_putnbr(nb / 10);
+     ft_putnbr(nb % 10);
+   }
+  else
+   {
+     ft_putchar('0' + nb);
+   }
 }
