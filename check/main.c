@@ -6,7 +6,7 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:15:40 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/04/29 04:44:56 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/04/29 05:07:13 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,6 @@ int		main(int argc, char **argv)
 	int					pin;
 	int					pin2;
 
-	if (argc == 1)
-		my_putstr("Error\nMissing arguments");
 	if (argc == 1)
 		return (0);
 	pin = stocktableau(&checkerr, argc, argv);
