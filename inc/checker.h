@@ -6,7 +6,7 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:15:24 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/04/29 17:56:35 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/05/01 04:45:05 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ typedef struct			s_check
 	unsigned long int	max_a;
 	unsigned long int	max_b;
 	int					args;
+	int					exitnbr;
 	int					index;
+	int					flag_v;
 	int					index2;
 	int					pin;
 	int					exit;
@@ -35,9 +37,11 @@ typedef struct			s_check
 
 long long int			ft_atoi(const char *str);
 int						swapa(t_check *checker);
+void			ft_nbr_putnbr(int nb, t_check *checker);
 int						swapb(t_check *checker);
 int						findargs(int argc, char **argv, t_check *checker);
 void					my_putstr(char *str);
+int						writetab(t_check *checker);
 int						pusha(t_check *checker);
 void					ft_putnbr(int nb);
 void					ft_putchar(char c);
