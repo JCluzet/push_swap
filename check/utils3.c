@@ -6,7 +6,7 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:15:40 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/05/01 15:30:35 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/05/01 21:32:29 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	writetab(t_check *checker)
 	else
 		my_putstr("\n   ");
 	if (checker->max_b != 0)
- 		my_putstr("     -B-\n");
+ 		my_putstr("          -B-\n");
 	else
 		my_putstr("\n");
 	my_putstr("\n");
@@ -88,7 +88,7 @@ int	writetab(t_check *checker)
 		{
 			if (index < checker->max_a)
 			{
-				nb = 8;
+				nb = 13;
 				ft_nbr_putnbr(checker->a[index], checker);
 				while (nb - checker->exitnbr > 0)
 				{
@@ -97,7 +97,7 @@ int	writetab(t_check *checker)
 				}
 			}
 			else
-				my_putstr("        ");
+				my_putstr("             ");
 			ft_putnbr(checker->b[index]);
 		}
 		index++;
