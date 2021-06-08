@@ -22,7 +22,7 @@ int		findalgo(t_check *checker)
 		return (0);
 	if (checker->max_a == 3)
 		sort3numbers(checker);
-	while (checkifsort(checker) == 1)
+	if (checker->max_a > 3)
 		sortmultinumbers(checker);
 	return (0);
 }

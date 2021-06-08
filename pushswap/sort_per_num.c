@@ -71,21 +71,85 @@ void		sort3numbers(t_check *checker)
 		reverserotatea(checker);
 }
 
+// void		sortmultinumbers(t_check *checker)          TEmp check
+// {
+// 	while (checker->max_a > 3)
+// 	{
+// 		smallestnumber(checker);
+// 		if (checker->pos_a == 0)
+// 			pushb(checker);
+// 		else if (checker->pos_a < checker->max_a / 2)
+// 			rotatea(checker);
+// 		else
+// 			reverserotatea(checker);
+// 	}
+// 	sort3numbers(checker);
+// 	while (checker->max_b)
+// 		pusha(checker);
+// }
+
+
+
 void		sortmultinumbers(t_check *checker)
 {
-	while (checker->max_a > 3)
+	int ref;
+	unsigned long int i;
+
+	i = 0;
+	ref = checker->a[0];
+	while (i < checker->max_a)
 	{
-		smallestnumber(checker);
-		if (checker->pos_a == 0)
-			pushb(checker);
-		else if (checker->pos_a < checker->max_a / 2)
-			rotatea(checker);
-		else
-			reverserotatea(checker);
+		if (checker->a[i] <= ref)
+		{
+			checker->pos_a = i;
+			push_numa_to_b(checker, checker->a[i]);
+			i = 0;
+		}
+		i++;
+		writetab(checker);
 	}
-	sort3numbers(checker);
-	while (checker->max_b)
-		pusha(checker);
+	// trier les nombres dans B et renvoyer a la fin de A
+	// boucler sans prendre en compte les derniers renvoyés de B qui sont dans la fin de A
+}
+
+void	push_numa_to_b(t_check *checker, int i)
+{
+		while ( checker->a[0] != i)
+		{
+			if (checker->pos_a < checker->max_a / 2)
+				rotatea(checker);
+			else
+				reverserotatea(checker);
+		}
+		pushb(checker);
+}
+
+// Prendre le premier de A comme ref
+// tout ce qui est en dessous passe dans B
+
+void	writetab(t_check *checker)
+{
+	unsigned long int index;
+
+	index = 0;
+	printf ("\n\n   -- NEW --\n");
+	if (checker->max_a != 0)
+		printf("\n --- tab A ---\n");
+	while (index < checker->max_a)
+	{
+		printf("\n   -> %d", checker->a[index]);
+		index++;
+	}
+	if (checker->max_b != 0)
+		printf("\n\n --- tab B ---\n");
+	index = 0;
+
+	while (index < checker->max_b)
+	{
+		printf("\n   -> %d", checker->b[index]);
+		index++;
+	}
+	printf("\n\n");
 }
 
 int			checkifsort(t_check *checker)

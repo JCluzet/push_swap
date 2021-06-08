@@ -40,6 +40,7 @@ int								stocktableau(t_check *checker,
 int								stockmorenum(t_check *checker, char **argv,
 								int index, int index2);
 long long int					ft_atoi(const char *str);
+void							writetab(t_check *checker);
 int								findalgo(t_check *checker);
 int								numcheck(char *str);
 int								checkifsort(t_check *checker);
@@ -48,6 +49,7 @@ void							sort2numbers(t_check *checker);
 void							sort3numbers(t_check *checker);
 void							my_putstr(char *str);
 int								firstswap(t_check *checker);
+void							push_numa_to_b(t_check *checker, int i);
 void							sortmultinumbers(t_check *checker);
 void							smallestnumber(t_check *checker);
 int								swapa(t_check *checker);
