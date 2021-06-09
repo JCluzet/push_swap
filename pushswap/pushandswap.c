@@ -67,7 +67,7 @@ int	pushb(t_check *checker)
 {
 	long int index;
 
-	index = checker->max_b;
+	index = checker->max_b - 1;
 	if (checker->max_a < 1)
 		return (0);
 	while (index >= 0)

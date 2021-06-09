@@ -6,7 +6,7 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:15:15 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/04/29 18:03:50 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/06/08 20:23:13 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,14 @@ typedef struct					s_check
 {
 	int							*a;
 	int							*b;
+	int							*chunk;
 	unsigned long int			max_a;
 	unsigned long int			max_b;
 	int							smallest_a;
+	int							smallest_b;
+	int							nb_under;
 	unsigned long int			pos_a;
+	unsigned long int			pos_b;
 	int							index;
 	int							index2;
 	int							pin;
@@ -42,8 +46,14 @@ int								stockmorenum(t_check *checker, char **argv,
 long long int					ft_atoi(const char *str);
 void							writetab(t_check *checker);
 int								findalgo(t_check *checker);
+void							find_med_chunk(t_check *checker);
 int								numcheck(char *str);
+int								whereis_notsort(t_check *checker);
+int								checkif_b_sort(t_check *checker);
+void							biggestnumber_forb(t_check *checker);
+void							sortb_toa(t_check *checker);
 int								checkifsort(t_check *checker);
+void							sorta(t_check *checker);
 int								checksamenum(t_check *checker);
 void							sort2numbers(t_check *checker);
 void							sort3numbers(t_check *checker);

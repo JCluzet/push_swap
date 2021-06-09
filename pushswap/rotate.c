@@ -74,7 +74,7 @@ int	rotateb(t_check *checker)
 	int					temp;
 	unsigned long int	index;
 
-	index = 0;
+	index = 1;
 	if (checker->max_b < 1)
 		return (0);
 	temp = checker->b[0];

@@ -6,7 +6,7 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:14:57 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/04/29 17:29:59 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/06/08 20:23:34 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,24 @@ void			smallestnumber(t_check *checker)
 		{
 			checker->smallest_a = checker->a[index];
 			checker->pos_a = index;
+		}
+		index++;
+	}
+}
+
+void			biggestnumber_forb(t_check *checker)
+{
+	unsigned long int index;
+
+	index = 1;
+	checker->smallest_b = checker->b[0];
+	checker->pos_b = 0;
+	while (index < checker->max_b)
+	{
+		if (checker->b[index] > checker->smallest_b)
+		{
+			checker->smallest_b = checker->b[index];
+			checker->pos_b = index;
 		}
 		index++;
 	}
