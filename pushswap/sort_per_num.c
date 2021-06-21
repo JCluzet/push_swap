@@ -141,9 +141,22 @@ void		sort3numbers(t_check *checker)
 
 void		sortmultinumbers(t_check *checker)
 {
-	// SORT tout les nb
-	// trouver la mediane
 	find_med_chunk(checker);
+
+	// TANT QUE A n'est pas trié
+	// {
+	// 	TANT QUE A ne contient plus de nb du chunk_X
+	// 	{
+	//  	Comparer le nb le plus rapide a reverserotate ou reverse      >> FUNCTION num_to_launch
+	//		Verifier qu'on peut accueillir ce nombre dans B				  >> FUNCTION 
+	//		Trier B si on ne peut pas l'accueilir
+	//		Emmener le nb correspondant dans B avec un pushb
+	// 	}
+	// 	push tout dans A et le rotate
+	//	chunk_X++
+	// }
+
+	writetab(checker);
 }
 
 void		find_med_chunk(t_check *checker)
