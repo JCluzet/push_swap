@@ -41,7 +41,6 @@ void			ft_nbr_putnbr(int nb, t_check *checker);
 int						swapb(t_check *checker);
 int						findargs(int argc, char **argv, t_check *checker);
 void					my_putstr(char *str);
-int						writetab(t_check *checker);
 int						pusha(t_check *checker);
 void					ft_putnbr(int nb);
 void					ft_putchar(char c);

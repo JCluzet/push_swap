@@ -47,6 +47,7 @@ int								stockmorenum(t_check *checker, char **argv,
 long long int					ft_atoi(const char *str);
 void							writetab(t_check *checker);
 int								findalgo(t_check *checker);
+void							sort_less_40_numbers(t_check *checker);
 void							find_med_chunk(t_check *checker);
 int								numcheck(char *str);
 int								whereis_notsort(t_check *checker);

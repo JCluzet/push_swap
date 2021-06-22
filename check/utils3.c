@@ -55,58 +55,6 @@ long long int	ft_atoi(const char *str)
 	return ((min % 2 == 0) ? nb : -nb);
 }
 
-
-int	writetab(t_check *checker)
-{
- 	unsigned long int index;
-	 int nb;
-
-	nb = 10;
-	index = 0;
-	if (checker->flag_v == 0)
-		return(0);
-	while(index < 30)
-	{
-		my_putstr("\n");
-		index++;
-	}
-	index = 0;
-	 if (checker->max_a != 0)
- 		my_putstr("\n-A-");
-	else
-		my_putstr("\n   ");
-	if (checker->max_b != 0)
- 		my_putstr("          -B-\n");
-	else
-		my_putstr("\n");
-	my_putstr("\n");
-	while (index < checker->max_a || index < checker->max_b)
-	{
-		if (index < checker->max_a)
-			ft_putnbr(checker->a[index]);
-		if (index < checker->max_b)
-		{
-			if (index < checker->max_a)
-			{
-				nb = 13;
-				ft_nbr_putnbr(checker->a[index], checker);
-				while (nb - checker->exitnbr > 0)
-				{
-					my_putstr(" ");
-					nb--;
-				}
-			}
-			else
-				my_putstr("             ");
-			ft_putnbr(checker->b[index]);
-		}
-		index++;
-		my_putstr("\n");
-	}
- 	printf("\n\n");
-	return(0);
- }
-
 void			ft_nbr_putnbr(int nb, t_check *checker)
 {
 	checker->exitnbr = 0;

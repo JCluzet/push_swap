@@ -17,14 +17,13 @@ int		read_n_sort(t_check *checker)
 	char				*buf;
 	int					ret;
 
-	writetab(checker);
 	ret = get_next_line(0, &buf);
 	while (ret > 0)
 	{
 		if (dispatcheur(checker, buf) == -1)
 			my_putstr("   └--> Error | Unknown Argument \n");
-		else
-			writetab(checker);
+		// else
+		// 	writetab(checker);
 		free(buf);
 		ret = get_next_line(0, &buf);
 		if (buf[0] == '\0')
@@ -90,12 +89,12 @@ int		main(int argc, char **argv)
 	if (argc == 1)
 		return (0);
 	checkerr.flag_v = 0;
-	if (ft_strcmp(argv[1], "-v") == 0)
-	{
-		checkerr.flag_v = 1;
-		argv += 1;
-		argc--;
-	}
+	// if (ft_strcmp(argv[1], "-v") == 0)
+	// {
+	// 	checkerr.flag_v = 1;
+	// 	argv += 1;
+	// 	argc--;
+	// }
 	pin = stocktableau(&checkerr, argc, argv);
 	if ((pin2 = checkargs(&checkerr, pin)) == 0)
 	{

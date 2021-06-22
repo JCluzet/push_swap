@@ -25,27 +25,6 @@ void		sort2numbers(t_check *checker)
 	}
 }
 
-int			firstswap(t_check *checker)
-{
-	int temp;
-
-	temp = checker->a[0];
-	checker->a[0] = checker->a[1];
-	checker->a[1] = temp;
-	if (checkifsort(checker) == 0)
-	{
-		my_putstr("sa\n");
-		return (1);
-	}
-	else
-	{
-		temp = checker->a[0];
-		checker->a[0] = checker->a[1];
-		checker->a[1] = temp;
-	}
-	return (0);
-}
-
 void		sort3numbers(t_check *checker)
 {
 	if (checker->a[0] > checker->a[1] &&
@@ -71,73 +50,23 @@ void		sort3numbers(t_check *checker)
 		reverserotatea(checker);
 }
 
-// void		sortmultinumbers(t_check *checker)          TEmp check
-// {
-// 	while (checker->max_a > 3)
-// 	{
-// 		smallestnumber(checker);
-// 		if (checker->pos_a == 0)
-// 			pushb(checker);
-// 		else if (checker->pos_a < checker->max_a / 2)
-// 			rotatea(checker);
-// 		else
-// 			reverserotatea(checker);
-// 	}
-// 	sort3numbers(checker);
-// 	while (checker->max_b)
-// 		pusha(checker);
-// }
 
-// void		sortmultinumbers(t_check *checker)
-// {
-// 	int ref;
-// 	unsigned long int i;
-// 	int temp;
-
-// 	checker->nb_under = 0;
-// 	// while (checkifsort(checker) != 0)
-// 	// {
-// 		i = whereis_notsort(checker);
-// 		temp = i;
-// 		printf("\n    I >> %lu", i);
-// 		ref = checker->a[i];
-// 		printf("\n    ref >> %d", ref);
-// 		while (i < checker->max_a)
-// 		{
-// 			if (checker->a[i] <= ref)
-// 			{
-// 				checker->pos_a = i;
-// 				push_numa_to_b(checker, checker->a[i]);
-// 				i = temp-1;
-// 			}
-// 			i++;
-// 			writetab(checker);
-// 		}
-// 		sortb_toa(checker);
-// 		printf("\n    After sort B");
-// 		writetab(checker);
-// 		// writetab(checker);
-// 	// }
-// }
-
-// void		sortmultinumbers(t_check *checker)
-// {
-// 	unsigned long int i;
-
-// 	i = 0;
-// 	writetab(checker);
-// 	while (checker->max_a != 0)
-// 	{
-// 		sortb_toa(checker);
-// 		pushb(checker);
-// 	}
-// 	writetab(checker);
-// 	// sorta(checker);
-// 	// writetab(checker);
-// 	while (checker->max_b != 0)
-// 		pusha(checker);
-// 	writetab(checker);
-// }
+void		sort_less_40_numbers(t_check *checker)
+{
+	while (checker->max_a > 3)
+	{
+		smallestnumber(checker);
+		if (checker->pos_a == 0)
+			pushb(checker);
+		else if (checker->pos_a < checker->max_a / 2)
+			rotatea(checker);
+		else
+			reverserotatea(checker);
+	}
+	sort3numbers(checker);
+	while (checker->max_b)
+		pusha(checker);
+}
 
 void		sortmultinumbers(t_check *checker)
 {
@@ -145,7 +74,6 @@ void		sortmultinumbers(t_check *checker)
 	int chunk;
 	int pos_of_num;
 	int nb;
-	// writetab(checker);
 
 	chunk = 0;
 	while (chunk != 8) // a supp
@@ -228,10 +156,7 @@ int		make_b_ready_for_num(t_check *checker, int nb)
 		return (0);
 	}
 	while ((checker->b[0] != next_back(checker, nb)))
-	{
 		rotateb(checker);
-		// printf("\n%d", next_back(checker, nb));
-	}
 	return(0);
 }
 
@@ -270,20 +195,6 @@ int		next_back(t_check *checker, int nb)
 	}
 	return(next_nb);
 }
-
-	// TANT QUE A n'est pas trié
-	// {
-	// 	TANT QUE A ne contient plus de nb du chunk_X
-	// 	{
-	//  	Comparer le nb le plus rapide a reverserotate ou reverse      >> FUNCTION num_to_launch
-	//		Rotate ou Reverse le nb jusqu'en haut
-	//		Verifier qu'on peut accueillir ce nombre dans B				  >> FUNCTION
-	//		Trier B si on ne peut pas l'accueilir
-	//		Emmener le nb correspondant dans B avec un pushb
-	// 	}
-	// 	push tout dans A et le rotate
-	//	chunk_X++
-	// }
 
 int		num_up(t_check *checker, unsigned long int pos)
 {
@@ -406,49 +317,6 @@ void		find_med_chunk(t_check *checker)
 	// printf("\nChunk 4 --- %d > %d", checker->chunk[6], checker->chunk[7]);
 }
 
-// void	sorta(t_check *checker)
-// {
-// 	while (checker->max_a > 1)
-// 	{
-// 		smallestnumber(checker);
-// 		while (checker->a[0] != checker->smallest_a)
-// 		{
-// 			if (checker->pos_a < checker->max_a / 2)
-// 				rotatea(checker);
-// 			else
-// 				reverserotatea(checker);
-// 		}
-// 		pushb(checker);
-// 	}
-// }
-
-// void	sortb_toa(t_check *checker)
-// {
-// 	biggestnumber_forb(checker); // + grand finalement
-// 	while (checker->b[0] != checker->smallest_b)
-// 	{
-// 		if (checker->pos_b < checker->max_b / 2)
-// 			rotateb(checker);
-// 		else
-// 			reverserotateb(checker);
-// 	}
-// }
-
-// void	push_numa_to_b(t_check *checker, int i)
-// {
-// 		while ( checker->a[0] != i)
-// 		{
-// 			if (checker->pos_a < checker->max_a / 2)
-// 				rotatea(checker);
-// 			else
-// 				reverserotatea(checker);
-// 		}
-// 		pushb(checker);
-// }
-
-// Prendre le premier de A comme ref
-// tout ce qui est en dessous passe dans B
-
 void	writetab(t_check *checker)
 {
 	unsigned long int index;
@@ -485,35 +353,5 @@ int			checkifsort(t_check *checker)
 			return (1);
 		index++;
 	}
-	// if (checker->max_b != 0)
-	// 	return (1);
 	return (0);
 }
-
-// int			whereis_notsort(t_check *checker)
-// {
-// 	unsigned long int index;
-
-// 	index = 0;
-// 	while (index < checker->max_a - 1)
-// 	{
-// 		if (checker->a[index] > checker->a[index + 1])
-// 			return (index);
-// 		index++;
-// 	}
-// 	return (-1);
-// }
-
-// int			checkif_b_sort(t_check *checker)
-// {
-// 	unsigned long int index;
-
-// 	index = 0;
-// 	while (index < checker->max_b - 1)
-// 	{
-// 		if (checker->b[index] > checker->b[index + 1])
-// 			return (1);
-// 		index++;
-// 	}
-// 	return (0);
-// }

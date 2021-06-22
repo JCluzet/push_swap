@@ -14,15 +14,15 @@
 
 int		findalgo(t_check *checker)
 {
-	if (checker->max_a == 1)
+	if (checker->max_a == 1 || checkifsort(checker) == 0)
 		return (0);
 	if (checker->max_a == 2)
 		sort2numbers(checker);
-	if (firstswap(checker) == 1)
-		return (0);
 	if (checker->max_a == 3)
 		sort3numbers(checker);
-	if (checker->max_a > 3)
+	if (checker->max_a > 3 && checker->max_a < 40)
+		sort_less_40_numbers(checker);
+	if (checker->max_a > 39)
 		sortmultinumbers(checker);
 	return (0);
 }
@@ -122,5 +122,6 @@ int		main(int argc, char **argv)
 }
 
 // Normer avec la V3
-// Faire les 2 bonus avec un beau affichage
-// Optimiser pour 100 nb et +
+// Check les leaks
+// Check sur la VM
+// Optimiser encore +
