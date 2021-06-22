@@ -6,7 +6,7 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:14:52 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/06/22 04:27:14 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/06/22 04:40:48 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ void		sortmultinumbers(t_check *checker)
 	int chunk;
 	int pos_of_num;
 	int nb;
-	writetab(checker);
+	// writetab(checker);
 
 	chunk = 0;
 	// while(checkifsort(checker) == 1 || checker->max_b != 0)
@@ -158,29 +158,27 @@ void		sortmultinumbers(t_check *checker)
 			// writetab(checker);
 			pos_of_num = nb_to_launch(checker, chunk);         // nb to launch >> position
 			nb = num_up(checker, pos_of_num);
-			printf("nb pos > %d to launch is now up\n\n", pos_of_num);
-			writetab(checker);
+			// printf("nb pos > %d to launch is now up\n\n", pos_of_num);
+			// writetab(checker);
 			make_b_ready_for_num(checker, nb);     // A CORRIGER
-			printf("b now ready!\n\n");
+			// printf("b now ready!\n\n");
 			pushb(checker);
-			writetab(checker);
+			// writetab(checker);
 		}
 		while (biggest_b(checker) != checker->b[0]) // supp ?
 			rotateb(checker);
-		printf("Juste avant de push tout b dans A : biggest:%d\n\n", biggest_b(checker));
-		writetab(checker);
+		// printf("Juste avant de push tout b dans A : biggest:%d\n\n", biggest_b(checker));
+		// writetab(checker);
 		if (chunk != 0)
 		{
 			while (checker->a[checker->max_a-1] != checker->chunk[chunk-1])
 			{
 				rotatea(checker);
-				printf(">>%d\n",checker->chunk[chunk-1]);
+				// printf(">>%d\n",checker->chunk[chunk-1]);
 			}
 		}
 		while (checker->max_b != 0)
-		{
 			pusha(checker);
-		}
 		chunk += 2;
 	}
 	while (biggest_a(checker) != checker->a[checker->max_a-1])
@@ -237,7 +235,7 @@ int		make_b_ready_for_num(t_check *checker, int nb)
 	while ((checker->b[0] != next_back(checker, nb)))
 	{
 		rotateb(checker);
-		printf("\n%d", next_back(checker, nb));
+		// printf("\n%d", next_back(checker, nb));
 	}
 	return(0);
 }
@@ -380,15 +378,15 @@ void		find_med_chunk(t_check *checker)
 		i++;
 	}
 	i = 0;
-	printf("This is B after > {");
-	while (i < checker->max_a)
-	{
-		printf("%d", checker->b[i]);
-		if (i != checker->max_a - 1)
-			printf(" ,");
-		i++;
-	}
-	printf("}\n");
+	// printf("This is B after > {");
+	// while (i < checker->max_a)
+	// {
+	// 	printf("%d", checker->b[i]);
+	// 	if (i != checker->max_a - 1)
+	// 		printf(" ,");
+	// 	i++;
+	// }
+	// printf("}\n");
 
 	// Find chunk
 
@@ -406,10 +404,10 @@ void		find_med_chunk(t_check *checker)
 	checker->chunk[6] = checker->b[(int)(checker->max_a / 1.33)];
 	checker->chunk[7] = checker->b[checker->max_a-1];
 
-	printf("\nChunk 1 --- %d > %d", checker->chunk[0], checker->chunk[1]);
-	printf("\nChunk 2 --- %d > %d", checker->chunk[2], checker->chunk[3]);
-	printf("\nChunk 3 --- %d > %d", checker->chunk[4], checker->chunk[5]);
-	printf("\nChunk 4 --- %d > %d", checker->chunk[6], checker->chunk[7]);
+	// printf("\nChunk 1 --- %d > %d", checker->chunk[0], checker->chunk[1]);
+	// printf("\nChunk 2 --- %d > %d", checker->chunk[2], checker->chunk[3]);
+	// printf("\nChunk 3 --- %d > %d", checker->chunk[4], checker->chunk[5]);
+	// printf("\nChunk 4 --- %d > %d", checker->chunk[6], checker->chunk[7]);
 }
 
 // void	sorta(t_check *checker)
