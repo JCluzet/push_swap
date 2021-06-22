@@ -6,7 +6,7 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:14:52 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/06/08 22:52:39 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/06/22 04:27:14 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ void		sortmultinumbers(t_check *checker)
 	int chunk;
 	int pos_of_num;
 	int nb;
+	writetab(checker);
 
 	chunk = 0;
 	// while(checkifsort(checker) == 1 || checker->max_b != 0)
@@ -154,10 +155,11 @@ void		sortmultinumbers(t_check *checker)
 	{
 		while (number_of_chunks(checker, chunk) != 0)
 		{
-			writetab(checker);
+			// writetab(checker);
 			pos_of_num = nb_to_launch(checker, chunk);         // nb to launch >> position
 			nb = num_up(checker, pos_of_num);
-			printf("to launch is now up with %d:\n\n", pos_of_num);
+			printf("nb pos > %d to launch is now up\n\n", pos_of_num);
+			writetab(checker);
 			make_b_ready_for_num(checker, nb);     // A CORRIGER
 			printf("b now ready!\n\n");
 			pushb(checker);
@@ -226,7 +228,13 @@ int		make_b_ready_for_num(t_check *checker, int nb)
 	i = 0;
 	if (checker->max_b < 2)
 		return (0);
-	while (checker->b[0] != next_back(checker, nb))
+	if (next_back(checker, nb) == -1)
+	{
+		while ( checker->b[checker->max_b - 1] != next_front(checker, nb))
+			rotateb(checker);
+		return (0);
+	}
+	while ((checker->b[0] != next_back(checker, nb)))
 	{
 		rotateb(checker);
 		printf("\n%d", next_back(checker, nb));
@@ -250,8 +258,6 @@ int		next_front(t_check *checker, int nb)
 		}
 		i++;
 	}
-	if (next_nb == 2147483644)
-		return(next_back(checker, nb));
 	return(next_nb);
 }
 
@@ -269,8 +275,6 @@ int		next_back(t_check *checker, int nb)
 				next_nb = checker->b[i];
 		i++;
 	}
-	if (next_nb == -1)
-		return(next_front(checker, nb));
 	return(next_nb);
 }
 
