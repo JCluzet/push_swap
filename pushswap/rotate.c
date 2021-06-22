@@ -27,7 +27,7 @@ int	rotatea(t_check *checker)
 		index++;
 	}
 	checker->a[index - 1] = temp;
-	printf("ra\n");
+	my_putstr("ra\n");
 	return (0);
 }
 
@@ -84,6 +84,6 @@ int	rotateb(t_check *checker)
 		index++;
 	}
 	checker->b[index - 1] = temp;
-	// my_putstr("rb\n");
+	my_putstr("rb\n");
 	return (0);
 }

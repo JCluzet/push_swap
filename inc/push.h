@@ -29,6 +29,7 @@ typedef struct					s_check
 	int							nb_under;
 	unsigned long int			pos_a;
 	unsigned long int			pos_b;
+	int							nb_of_chunk;
 	int							index;
 	int							index2;
 	int							pin;

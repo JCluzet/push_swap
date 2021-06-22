@@ -148,9 +148,6 @@ void		sortmultinumbers(t_check *checker)
 	// writetab(checker);
 
 	chunk = 0;
-	// while(checkifsort(checker) == 1 || checker->max_b != 0)
-	// {
-	// 		chunk = 0;
 	while (chunk != 8) // a supp
 	{
 		while (number_of_chunks(checker, chunk) != 0)
@@ -183,8 +180,6 @@ void		sortmultinumbers(t_check *checker)
 	}
 	while (biggest_a(checker) != checker->a[checker->max_a-1])
 			rotatea(checker);
-	// }
-	writetab(checker);
 }
 
 int		biggest_b(t_check *checker)
@@ -359,6 +354,7 @@ void		find_med_chunk(t_check *checker)
 	unsigned long int i;
 	int temp;
 
+	checker->nb_of_chunk = 5;
 	i = 0;
 	while (i < checker->max_a)
 	{
