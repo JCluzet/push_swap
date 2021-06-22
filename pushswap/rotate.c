@@ -84,6 +84,6 @@ int	rotateb(t_check *checker)
 		index++;
 	}
 	checker->b[index - 1] = temp;
-	my_putstr("srb\n");
+	// my_putstr("rb\n");
 	return (0);
 }
