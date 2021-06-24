@@ -6,13 +6,13 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:14:44 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/04/29 17:54:54 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/06/24 16:27:33 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push.h"
 
-int	rotatea(t_check *checker)
+int	rotatea(t_check *checker, int a)
 {
 	unsigned long int	index;
 	int					temp;
@@ -27,11 +27,28 @@ int	rotatea(t_check *checker)
 		index++;
 	}
 	checker->a[index - 1] = temp;
-	my_putstr("ra\n");
+	if ( a == 1)
+		my_putstr("ra\n");
 	return (0);
 }
 
-int	reverserotatea(t_check *checker)
+int rr(t_check *checker)
+{
+	rotatea(checker, 0);
+	rotateb(checker, 0);
+	my_putstr("rr\n");
+	return (0);
+}
+
+int rrr(t_check *checker)
+{
+	reverserotatea(checker, 0);
+	reverserotateb(checker, 0);
+	my_putstr("rrr\n");
+	return (0);
+}
+
+int	reverserotatea(t_check *checker, int a)
 {
 	int					temp;
 	unsigned long int	index;
@@ -46,11 +63,12 @@ int	reverserotatea(t_check *checker)
 		index--;
 	}
 	checker->a[0] = temp;
-	my_putstr("rra\n");
+	if ( a == 1)
+		my_putstr("rra\n");
 	return (0);
 }
 
-int	reverserotateb(t_check *checker)
+int	reverserotateb(t_check *checker, int a)
 {
 	int					temp;
 	unsigned long int	index;
@@ -65,11 +83,12 @@ int	reverserotateb(t_check *checker)
 		index--;
 	}
 	checker->b[0] = temp;
-	my_putstr("rrb\n");
+	if ( a == 1)
+		my_putstr("rrb\n");
 	return (0);
 }
 
-int	rotateb(t_check *checker)
+int	rotateb(t_check *checker, int a)
 {
 	int					temp;
 	unsigned long int	index;
@@ -84,6 +103,7 @@ int	rotateb(t_check *checker)
 		index++;
 	}
 	checker->b[index - 1] = temp;
-	my_putstr("rb\n");
+	if ( a == 1)
+		my_putstr("rb\n");
 	return (0);
 }

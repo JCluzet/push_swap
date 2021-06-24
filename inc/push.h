@@ -6,7 +6,7 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:15:15 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/06/08 20:23:13 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/06/24 18:03:16 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct					s_check
 	int							nb_under;
 	unsigned long int			pos_a;
 	unsigned long int			pos_b;
-	int							nb_of_chunk;
+	unsigned long int							nb_of_chunk;
 	int							index;
 	int							index2;
 	int							pin;
@@ -45,6 +45,8 @@ int								stocktableau(t_check *checker,
 int								stockmorenum(t_check *checker, char **argv,
 								int index, int index2);
 long long int					ft_atoi(const char *str);
+int		reverse_or_rotate(t_check *checker, int nb, int a);
+void	reverse_maybe_more(t_check *checker, int chunk);
 void							writetab(t_check *checker);
 int								findalgo(t_check *checker);
 void							sort_less_40_numbers(t_check *checker);
@@ -73,17 +75,19 @@ int		num_up(t_check *checker, unsigned long int pos);
 int			nb_to_launch(t_check *checker, int chunk);
 int		biggest_a(t_check *checker);
 int								swapb(t_check *checker);
+int rr(t_check *checker);
+int rrr(t_check *checker);
 int								biggest_b(t_check *checker);
 int								pusha(t_check *checker);
 int								pushb(t_check *checker);
-int								rotatea(t_check *checker);
+int								rotatea(t_check *checker, int a);
 void							ft_putchar(char c);
 void							ft_putnbr(int nb);
 int								checkargs(t_check *checker, int pin);
 int								findargs(int argc, char **argv,
 								t_check *checker);
-int								rotateb(t_check *checker);
-int								reverserotatea(t_check *checker);
-int								reverserotateb(t_check *checker);
+int								rotateb(t_check *checker, int a);
+int								reverserotatea(t_check *checker, int a);
+int								reverserotateb(t_check *checker, int a);
 
 #endif

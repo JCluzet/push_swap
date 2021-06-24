@@ -6,7 +6,7 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:14:52 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/06/22 04:40:48 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/06/24 18:40:13 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,20 @@ void		sort3numbers(t_check *checker)
 	checker->a[1] > checker->a[2] && checker->a[0] > checker->a[2])
 	{
 		swapa(checker);
-		reverserotatea(checker);
+		reverserotatea(checker,1);
 	}
 	if (checker->a[0] > checker->a[1] &&
 	checker->a[1] < checker->a[2] && checker->a[0] > checker->a[2])
-		rotatea(checker);
+		rotatea(checker,1);
 	if (checker->a[0] < checker->a[1] &&
 	checker->a[1] > checker->a[2] && checker->a[0] < checker->a[2])
 	{
 		swapa(checker);
-		rotatea(checker);
+		rotatea(checker,1);
 	}
 	if (checker->a[0] < checker->a[1] &&
 	checker->a[1] > checker->a[2] && checker->a[0] > checker->a[2])
-		reverserotatea(checker);
+		reverserotatea(checker,1);
 }
 
 
@@ -59,9 +59,9 @@ void		sort_less_40_numbers(t_check *checker)
 		if (checker->pos_a == 0)
 			pushb(checker);
 		else if (checker->pos_a < checker->max_a / 2)
-			rotatea(checker);
+			rotatea(checker,1);
 		else
-			reverserotatea(checker);
+			reverserotatea(checker,1);
 	}
 	sort3numbers(checker);
 	while (checker->max_b)
@@ -76,7 +76,7 @@ void		sortmultinumbers(t_check *checker)
 	int nb;
 
 	chunk = 0;
-	while (chunk != 8) // a supp
+	while (chunk != (int)checker->nb_of_chunk)
 	{
 		while (number_of_chunks(checker, chunk) != 0)
 		{
@@ -85,20 +85,27 @@ void		sortmultinumbers(t_check *checker)
 			nb = num_up(checker, pos_of_num);
 			// printf("nb pos > %d to launch is now up\n\n", pos_of_num);
 			// writetab(checker);
-			make_b_ready_for_num(checker, nb);     // A CORRIGER
-			// printf("b now ready!\n\n");
+			make_b_ready_for_num(checker, nb);
 			pushb(checker);
-			// writetab(checker);
 		}
-		while (biggest_b(checker) != checker->b[0]) // supp ?
-			rotateb(checker);
+
+		while (biggest_b(checker) != checker->b[0])
+		{
+			if (reverse_or_rotate(checker, biggest_b(checker), 0) == 0)
+				rotateb(checker, 1);
+			else
+				reverserotateb(checker, 1);
+		}                                                                    //// DETERMINER SI biggest_b est plus facile a ramener en bas a base de rb ou rrb  et taxer des rr ou rrr ?
 		// printf("Juste avant de push tout b dans A : biggest:%d\n\n", biggest_b(checker));
 		// writetab(checker);
 		if (chunk != 0)
 		{
 			while (checker->a[checker->max_a-1] != checker->chunk[chunk-1])
 			{
-				rotatea(checker);
+				if (reverse_or_rotate(checker, checker->chunk[chunk-1], 1) == 0)
+					rotatea(checker, 1);
+				else
+					reverserotatea(checker, 1);                                                      //// DETERMINER SI biggest_b est plus facile a ramener en bas a base de rb ou rrb  et taxer des rr ou rrr ?
 				// printf(">>%d\n",checker->chunk[chunk-1]);
 			}
 		}
@@ -107,7 +114,57 @@ void		sortmultinumbers(t_check *checker)
 		chunk += 2;
 	}
 	while (biggest_a(checker) != checker->a[checker->max_a-1])
-			rotatea(checker);
+	{
+		if (reverse_or_rotate(checker, biggest_a(checker), 1) == 0)
+			rotatea(checker, 1);
+		else
+			reverserotatea(checker, 1);                                                      //// DETERMINER SI biggest_b est plus facile a ramener en bas a base de rb ou rrb  et taxer des rr ou rrr ?
+	}
+	// writetab(checker);                                                                   ////// DETERMINER SI biggest_b est plus facile a ramener en bas a base de rb ou rrb  et taxer des rr ou rrr ?
+}
+
+int		reverse_or_rotate(t_check *checker, int nb, int a)
+{
+	unsigned long int i;
+
+	i = 0;
+	if ( a == 0 )
+	{
+	while (i < checker->max_b)
+	{
+		if (checker->b[i] == nb)
+		{
+			if (i < checker->max_b / 2)
+			{
+				return (0);
+			}
+			else
+			{
+				return (1);
+			}
+		}
+		i++;
+	}
+	}
+	else
+	{
+	while (i < checker->max_a)
+	{
+		if (checker->a[i] == nb)
+		{
+			if (i < checker->max_a / 2)
+			{
+				return (0);
+			}
+			else
+			{
+				return (1);
+			}
+		}
+		i++;
+	}
+	}
+	return (-1);
 }
 
 int		biggest_b(t_check *checker)
@@ -152,11 +209,21 @@ int		make_b_ready_for_num(t_check *checker, int nb)
 	if (next_back(checker, nb) == -1)
 	{
 		while ( checker->b[checker->max_b - 1] != next_front(checker, nb))
-			rotateb(checker);
+		{
+			if (reverse_or_rotate(checker, next_front(checker, nb), 0) == 0)
+				rotateb(checker, 1);
+			else
+				reverserotateb(checker, 1);                                                      //// DETERMINER SI biggest_b est plus facile a ramener en bas a base de rb ou rrb  et taxer des rr ou rrr ?
+		}      	                                                     // DETERMINER SI next_front est plus facile a ramener en bas a base de ra ou rra ? et si rr est pas mieux ? ou rrr ??
 		return (0);
 	}
 	while ((checker->b[0] != next_back(checker, nb)))
-		rotateb(checker);
+	{
+		if (reverse_or_rotate(checker, next_back(checker, nb), 0) == 0)
+			rotateb(checker, 1);
+		else
+			reverserotateb(checker, 1);                                                      //// DETERMINER SI biggest_b est plus facile a ramener en bas a base de rb ou rrb  et taxer des rr ou rrr ?
+	}      	                                              // DETERMINER SI next_front est plus facile a ramener en bas a base de ra ou rra ?
 	return(0);
 }
 
@@ -203,10 +270,10 @@ int		num_up(t_check *checker, unsigned long int pos)
 	number = checker->a[pos];
 	if (pos > checker->max_a/2)
 		while (checker->a[0] != number)
-			reverserotatea(checker);
+			reverserotatea(checker, 1);
 	else
 		while (checker->a[0] != number)
-			rotatea(checker);
+			rotatea(checker, 1);
 	return (number);
 
 }
@@ -264,8 +331,24 @@ void		find_med_chunk(t_check *checker)
 {
 	unsigned long int i;
 	int temp;
+	float num;
+	float numplus;
 
-	checker->nb_of_chunk = 5;
+	if (checker->max_a > 200)
+	{
+		checker->nb_of_chunk = 20;
+		numplus = 0.1;
+	}
+	// 10 > 0.2 >> 9100 ins
+	// 16 > 0.16
+	// 20 > 0.1 >> 7900 ins
+	// 30 > 0.75 NOP
+	// 40 > 0.05 >> 10000 ins
+	else
+	{
+		numplus = 0.04;
+		checker->nb_of_chunk = 8;
+	}
 	i = 0;
 	while (i < checker->max_a)
 	{
@@ -285,36 +368,31 @@ void		find_med_chunk(t_check *checker)
 		i++;
 	}
 	i = 0;
-	// printf("This is B after > {");
-	// while (i < checker->max_a)
-	// {
-	// 	printf("%d", checker->b[i]);
-	// 	if (i != checker->max_a - 1)
-	// 		printf(" ,");
-	// 	i++;
-	// }
-	// printf("}\n");
+	num = 0.0;
 
-	// Find chunk
+	checker->chunk = malloc(checker->nb_of_chunk * sizeof(int));
 
-	checker->chunk = malloc(8 * sizeof(int));
-
+	if (checker->nb_of_chunk == 8)
+	{
 	checker->chunk[0] = checker->b[0];
 	checker->chunk[1] = checker->b[checker->max_a / 4 -1];
-
 	checker->chunk[2] = checker->b[checker->max_a / 4];
 	checker->chunk[3] = checker->b[checker->max_a / 2-1];
-
 	checker->chunk[4] = checker->b[checker->max_a / 2];
 	checker->chunk[5] = checker->b[(int)(checker->max_a / 1.33)-1];
-
 	checker->chunk[6] = checker->b[(int)(checker->max_a / 1.33)];
 	checker->chunk[7] = checker->b[checker->max_a-1];
-
-	// printf("\nChunk 1 --- %d > %d", checker->chunk[0], checker->chunk[1]);
-	// printf("\nChunk 2 --- %d > %d", checker->chunk[2], checker->chunk[3]);
-	// printf("\nChunk 3 --- %d > %d", checker->chunk[4], checker->chunk[5]);
-	// printf("\nChunk 4 --- %d > %d", checker->chunk[6], checker->chunk[7]);
+	}
+	else
+	{
+	while(i < checker->nb_of_chunk)
+	{
+		checker->chunk[i] = checker->b[(int)(checker->max_a * num)];
+		num += numplus;
+		checker->chunk[i+1] = checker->b[(int)(checker->max_a * num) -1];
+		i += 2;
+	}
+	}
 }
 
 void	writetab(t_check *checker)
