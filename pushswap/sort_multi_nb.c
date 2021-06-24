@@ -34,7 +34,7 @@ int	reverse_or_rotate(t_check *checker, int nb, int a)
 	return (-1);
 }
 
-int		reverse_rotate_decided(t_check *checker, int nb)
+int	reverse_rotate_decided(t_check *checker, int nb)
 {
 	while (checker->i < checker->max_a)
 	{
@@ -47,7 +47,7 @@ int		reverse_rotate_decided(t_check *checker, int nb)
 		}
 		checker->i++;
 	}
-	return(-1);
+	return (-1);
 }
 
 int	make_b_ready_for_num(t_check *checker, int nb)

@@ -47,12 +47,13 @@ typedef struct s_check
 
 int								stocktableau(t_check *checker,
 									int argc, char **argv);
-int								stockmorenum(t_check *checker, char **argv,
-									int index, int index2);
+int								stockmorenum(t_check *checker,
+									char **argv, int index, int index2);
 long long int					ft_atoi(const char *str);
 int								reverse_or_rotate(t_check *checker,
 									int nb, int a);
-int								reverse_rotate_decided(t_check *checker, int nb);
+int								reverse_rotate_decided(t_check *checker,
+									int nb);
 void							pre_sort_for_chunk(t_check *checker);
 int								findalgo(t_check *checker);
 void							sort_less_40_numbers(t_check *checker);
