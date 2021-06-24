@@ -20,7 +20,7 @@
 #  define BUFFER_SIZE 10
 # endif
 
-typedef struct	s_gnl
+typedef struct s_gnl
 {
 	char		buff[BUFFER_SIZE + 1];
 	int			ret;

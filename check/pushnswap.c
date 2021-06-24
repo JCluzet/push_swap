@@ -14,7 +14,7 @@
 
 int	swapa(t_check *checker)
 {
-	int temp;
+	int	temp;
 
 	if (checker->max_a < 2)
 		return (0);
@@ -26,7 +26,7 @@ int	swapa(t_check *checker)
 
 int	swapb(t_check *checker)
 {
-	int temp;
+	int	temp;
 
 	if (checker->max_b < 2)
 		return (0);
@@ -38,7 +38,7 @@ int	swapb(t_check *checker)
 
 int	pusha(t_check *checker)
 {
-	long int index;
+	long int	index;
 
 	index = checker->max_a - 1;
 	if (checker->max_b < 1)
@@ -62,7 +62,7 @@ int	pusha(t_check *checker)
 
 int	pushb(t_check *checker)
 {
-	long int index;
+	long int	index;
 
 	index = checker->max_b - 1;
 	if (checker->max_a < 1)

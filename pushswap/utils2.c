@@ -12,7 +12,7 @@
 
 #include "../inc/push.h"
 
-int				findargs(int argc, char **argv, t_check *checker)
+int	findargs(int argc, char **argv, t_check *checker)
 {
 	checker->pin = 0;
 	checker->exit = 0;
@@ -21,8 +21,8 @@ int				findargs(int argc, char **argv, t_check *checker)
 		checker->exit++;
 		while (argv[checker->index][checker->pin])
 		{
-			if ((argv[checker->index][checker->pin] < '0' ||
-			argv[checker->index][checker->pin] > '9')
+			if ((argv[checker->index][checker->pin] < '0'
+				|| argv[checker->index][checker->pin] > '9')
 			&& ((argv[checker->index][checker->pin] != ' ')
 			&& (argv[checker->index][checker->pin] != '-')))
 			{
@@ -41,7 +41,7 @@ int				findargs(int argc, char **argv, t_check *checker)
 	return (checker->exit);
 }
 
-int				checkargs2(t_check *checker)
+int	checkargs2(t_check *checker)
 {
 	if (checksamenum(checker) == -1)
 	{
@@ -55,7 +55,7 @@ int				checkargs2(t_check *checker)
 	return (1);
 }
 
-int				checkargs(t_check *checker, int pin)
+int	checkargs(t_check *checker, int pin)
 {
 	if (pin == -1)
 	{
@@ -80,12 +80,12 @@ int				checkargs(t_check *checker, int pin)
 	return (1);
 }
 
-void			ft_putchar(char c)
+void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-void			ft_putnbr(int nb)
+void	ft_putnbr(int nb)
 {
 	if (nb < 0)
 	{

@@ -32,13 +32,17 @@ long long int	ft_atoi(const char *str)
 		nb = nb * 10 + (*str - 48);
 		str++;
 	}
-	return ((min % 2 == 0) ? nb : -nb);
+	if (min % 2 == 0)
+		return (nb);
+	else
+		return (-nb);
+	return (0);
 }
 
-int				checksamenum(t_check *checker)
+int	checksamenum(t_check *checker)
 {
-	unsigned long int index;
-	unsigned long int index2;
+	unsigned long int	index;
+	unsigned long int	index2;
 
 	index = 0;
 	index2 = 0;
@@ -60,9 +64,9 @@ int				checksamenum(t_check *checker)
 	return (0);
 }
 
-void			smallestnumber(t_check *checker)
+void	smallestnumber(t_check *checker)
 {
-	unsigned long int index;
+	unsigned long int	index;
 
 	index = 1;
 	checker->smallest_a = checker->a[0];
@@ -78,9 +82,9 @@ void			smallestnumber(t_check *checker)
 	}
 }
 
-void			biggestnumber_forb(t_check *checker)
+void	biggestnumber_forb(t_check *checker)
 {
-	unsigned long int index;
+	unsigned long int	index;
 
 	index = 1;
 	checker->smallest_b = checker->b[0];
@@ -96,7 +100,7 @@ void			biggestnumber_forb(t_check *checker)
 	}
 }
 
-void			my_putstr(char *str)
+void	my_putstr(char *str)
 {
 	int		index;
 

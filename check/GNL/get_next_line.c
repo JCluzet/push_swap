@@ -12,9 +12,9 @@
 
 #include "get_next_line.h"
 
-int		ft_strchr(char *buff)
+int	ft_strchr(char *buff)
 {
-	int index;
+	int	index;
 
 	index = 0;
 	while (buff[index])
@@ -26,9 +26,9 @@ int		ft_strchr(char *buff)
 	return (1);
 }
 
-int		readfile(int fd, char *buff, char *str)
+int	readfile(int fd, char *buff, char *str)
 {
-	int ret;
+	int	ret;
 
 	if (str)
 	{
@@ -43,10 +43,10 @@ int		readfile(int fd, char *buff, char *str)
 
 char	get_this_line(int fd, char **line, t_gnl gnl)
 {
-	static char *str;
+	static char	*str;
 
 	*line = ft_strdup("");
-	while ((gnl.ret = (readfile(fd, gnl.buff, str))) > 0)
+	while (readfile(fd, gnl.buff, str) > 0)
 	{
 		if (str)
 			str = NULL;
@@ -69,7 +69,7 @@ char	get_this_line(int fd, char **line, t_gnl gnl)
 	return (gnl.ret);
 }
 
-int		get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	t_gnl			gnl;
 

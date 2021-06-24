@@ -12,12 +12,12 @@
 
 #include "../inc/checker.h"
 
-void			ft_putchar(char c)
+void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-void			ft_putnbr(int nb)
+void	ft_putnbr(int nb)
 {
 	if (nb < 0)
 		ft_putchar('-');
@@ -52,10 +52,14 @@ long long int	ft_atoi(const char *str)
 		nb = nb * 10 + (*str - 48);
 		str++;
 	}
-	return ((min % 2 == 0) ? nb : -nb);
+	if (min % 2 == 0)
+		return (nb);
+	else
+		return (-nb);
+	return (0);
 }
 
-void			ft_nbr_putnbr(int nb, t_check *checker)
+void	ft_nbr_putnbr(int nb, t_check *checker)
 {
 	checker->exitnbr = 0;
 	if (nb < 0)

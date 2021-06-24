@@ -12,7 +12,7 @@
 
 #include "../inc/push.h"
 
-int		findalgo(t_check *checker)
+int	findalgo(t_check *checker)
 {
 	if (checker->max_a == 1 || checkifsort(checker) == 0)
 		return (0);
@@ -27,7 +27,7 @@ int		findalgo(t_check *checker)
 	return (0);
 }
 
-int		filltab(t_check *checker, int argc, char **argv)
+int	filltab(t_check *checker, int argc, char **argv)
 {
 	long long int	num;
 	int				falsearg;
@@ -53,7 +53,7 @@ int		filltab(t_check *checker, int argc, char **argv)
 	return (0);
 }
 
-int		stocktableau(t_check *checker, int argc, char **argv)
+int	stocktableau(t_check *checker, int argc, char **argv)
 {
 	checker->index2 = 0;
 	checker->index = 1;
@@ -72,7 +72,7 @@ int		stocktableau(t_check *checker, int argc, char **argv)
 	return (0);
 }
 
-int		stockmorenum(t_check *checker, char **argv, int index, int index2)
+int	stockmorenum(t_check *checker, char **argv, int index, int index2)
 {
 	int				pin;
 	long long int	num;
@@ -96,7 +96,7 @@ int		stockmorenum(t_check *checker, char **argv, int index, int index2)
 	return (0);
 }
 
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_check		checkerr;
 	int			pin;
@@ -107,7 +107,8 @@ int		main(int argc, char **argv)
 	if (argc == 1)
 		return (0);
 	pin = stocktableau(&checkerr, argc, argv);
-	if ((pin2 = checkargs(&checkerr, pin)) == 0)
+	pin2 = checkargs(&checkerr, pin);
+	if (pin2 == 0)
 	{
 		free(checkerr.a);
 		free(checkerr.b);

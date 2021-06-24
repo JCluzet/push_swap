@@ -12,9 +12,9 @@
 
 #include "get_next_line.h"
 
-int		ft_strlen(const char *s)
+int	ft_strlen(const char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s[i] != '\0')
@@ -63,7 +63,8 @@ char	*ft_strjoin(char **line, char *buff)
 	int		u;
 
 	i = ft_strlen(buff);
-	if (!(tmp = malloc(i + ft_strlen(*line) + 1)))
+	tmp = malloc(i + ft_strlen(*line) + 1);
+	if (!(tmp))
 		return (NULL);
 	i = 0;
 	u = 0;
@@ -75,12 +76,8 @@ char	*ft_strjoin(char **line, char *buff)
 	}
 	u = 0;
 	while (buff[u])
-	{
-		tmp[i] = buff[u];
-		i++;
-		u++;
-	}
-	free((char*)*line);
+		tmp[i++] = buff[u++];
+	free (*line);
 	tmp[i] = '\0';
 	return (tmp);
 }

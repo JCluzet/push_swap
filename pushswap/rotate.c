@@ -27,24 +27,8 @@ int	rotatea(t_check *checker, int a)
 		index++;
 	}
 	checker->a[index - 1] = temp;
-	if ( a == 1)
+	if (a == 1)
 		my_putstr("ra\n");
-	return (0);
-}
-
-int rr(t_check *checker)
-{
-	rotatea(checker, 0);
-	rotateb(checker, 0);
-	my_putstr("rr\n");
-	return (0);
-}
-
-int rrr(t_check *checker)
-{
-	reverserotatea(checker, 0);
-	reverserotateb(checker, 0);
-	my_putstr("rrr\n");
 	return (0);
 }
 
@@ -63,7 +47,7 @@ int	reverserotatea(t_check *checker, int a)
 		index--;
 	}
 	checker->a[0] = temp;
-	if ( a == 1)
+	if (a == 1)
 		my_putstr("rra\n");
 	return (0);
 }
@@ -83,7 +67,7 @@ int	reverserotateb(t_check *checker, int a)
 		index--;
 	}
 	checker->b[0] = temp;
-	if ( a == 1)
+	if (a == 1)
 		my_putstr("rrb\n");
 	return (0);
 }
@@ -103,7 +87,7 @@ int	rotateb(t_check *checker, int a)
 		index++;
 	}
 	checker->b[index - 1] = temp;
-	if ( a == 1)
+	if (a == 1)
 		my_putstr("rb\n");
 	return (0);
 }

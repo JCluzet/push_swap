@@ -17,7 +17,7 @@
 # include <unistd.h>
 # include <stdio.h>
 
-typedef struct					s_check
+typedef struct s_check
 {
 	int							*a;
 	int							*b;
@@ -29,7 +29,7 @@ typedef struct					s_check
 	int							nb_under;
 	unsigned long int			pos_a;
 	unsigned long int			pos_b;
-	unsigned long int							nb_of_chunk;
+	unsigned long int			nb_of_chunk;
 	int							index;
 	int							index2;
 	int							pin;
@@ -41,12 +41,13 @@ typedef struct					s_check
 }								t_check;
 
 int								stocktableau(t_check *checker,
-								int argc, char **argv);
+									int argc, char **argv);
 int								stockmorenum(t_check *checker, char **argv,
-								int index, int index2);
+									int index, int index2);
 long long int					ft_atoi(const char *str);
-int		reverse_or_rotate(t_check *checker, int nb, int a);
-void	reverse_maybe_more(t_check *checker, int chunk);
+int								reverse_or_rotate(t_check *checker,
+									int nb, int a);
+void							reverse_maybe_more(t_check *checker, int chunk);
 void							writetab(t_check *checker);
 int								findalgo(t_check *checker);
 void							sort_less_40_numbers(t_check *checker);
@@ -68,15 +69,15 @@ void							sortmultinumbers(t_check *checker);
 void							smallestnumber(t_check *checker);
 int								swapa(t_check *checker);
 int								number_of_chunks(t_check *checker, int chunk);
-int		make_b_ready_for_num(t_check *checker, int nb);
-int		next_front(t_check *checker, int nb);
-int		next_back(t_check *checker, int nb);
-int		num_up(t_check *checker, unsigned long int pos);
-int			nb_to_launch(t_check *checker, int chunk);
-int		biggest_a(t_check *checker);
+int								make_b_ready_for_num(t_check *checker, int nb);
+int								next_front(t_check *checker, int nb);
+int								next_back(t_check *checker, int nb);
+int								num_up(t_check *checker, unsigned long int pos);
+int								nb_to_launch(t_check *checker, int chunk);
+int								biggest_a(t_check *checker);
 int								swapb(t_check *checker);
-int rr(t_check *checker);
-int rrr(t_check *checker);
+int								rr(t_check *checker);
+int								rrr(t_check *checker);
 int								biggest_b(t_check *checker);
 int								pusha(t_check *checker);
 int								pushb(t_check *checker);
@@ -85,7 +86,7 @@ void							ft_putchar(char c);
 void							ft_putnbr(int nb);
 int								checkargs(t_check *checker, int pin);
 int								findargs(int argc, char **argv,
-								t_check *checker);
+									t_check *checker);
 int								rotateb(t_check *checker, int a);
 int								reverserotatea(t_check *checker, int a);
 int								reverserotateb(t_check *checker, int a);

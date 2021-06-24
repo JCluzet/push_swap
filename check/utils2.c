@@ -14,7 +14,7 @@
 
 void	my_putstr(char *str)
 {
-	int index;
+	int	index;
 
 	index = 0;
 	while (str[index])
@@ -24,9 +24,9 @@ void	my_putstr(char *str)
 	}
 }
 
-int		ft_strcmp(char *s1, char *s2)
+int	ft_strcmp(char *s1, char *s2)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
@@ -34,7 +34,7 @@ int		ft_strcmp(char *s1, char *s2)
 	return (s1[i] - s2[i]);
 }
 
-int		numcheck(char *str)
+int	numcheck(char *str)
 {
 	int		index;
 	double	temp;
@@ -52,7 +52,7 @@ int		numcheck(char *str)
 	return (0);
 }
 
-int		checkargs2(t_check *checker)
+int	checkargs2(t_check *checker)
 {
 	if (checksamenum(checker) == -1)
 	{
@@ -66,7 +66,7 @@ int		checkargs2(t_check *checker)
 	return (1);
 }
 
-int		checkargs(t_check *checker, int pin)
+int	checkargs(t_check *checker, int pin)
 {
 	if (pin == -1)
 	{

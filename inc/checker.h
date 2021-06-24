@@ -17,7 +17,7 @@
 # include <unistd.h>
 # include <stdio.h>
 
-typedef struct			s_check
+typedef struct s_check
 {
 	int					*a;
 	int					*b;
@@ -37,7 +37,7 @@ typedef struct			s_check
 
 long long int			ft_atoi(const char *str);
 int						swapa(t_check *checker);
-void			ft_nbr_putnbr(int nb, t_check *checker);
+void					ft_nbr_putnbr(int nb, t_check *checker);
 int						swapb(t_check *checker);
 int						findargs(int argc, char **argv, t_check *checker);
 void					my_putstr(char *str);
@@ -58,7 +58,7 @@ int						dispatcheur(t_check *checker, char *buf);
 int						checkargs(t_check *checker, int pin);
 int						stocktableau(t_check *checker, int argc, char **argv);
 int						stockmorenum(t_check *checker, char **argv,
-						int index, int index2);
+							int index, int index2);
 int						findmoreargs(char **argv, int argc);
 
 #endif

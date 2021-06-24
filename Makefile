@@ -24,14 +24,15 @@ SRC =				check/main.c \
 					check/GNL/get_next_line_utils.c \
 					check/GNL/get_next_line.c \
 					check/pushnswap.c \
-					check/rotate.c
+					check/rotate.c \
 
 SRC_2 =				pushswap/main.c \
 					pushswap/utils.c \
 					pushswap/utils2.c \
 					pushswap/rotate.c \
 					pushswap/pushandswap.c \
-					pushswap/sort_per_num.c
+					pushswap/sort_per_num.c \
+					pushswap/rr_rrr.c
 
 
 OBJ_NAME = $(SRC:.c=.o)

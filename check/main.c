@@ -12,7 +12,7 @@
 
 #include "../inc/checker.h"
 
-int		read_n_sort(t_check *checker)
+int	read_n_sort(t_check *checker)
 {
 	char				*buf;
 	int					ret;
@@ -22,8 +22,6 @@ int		read_n_sort(t_check *checker)
 	{
 		if (dispatcheur(checker, buf) == -1)
 			my_putstr("   └--> Error | Unknown Argument \n");
-		// else
-		// 	writetab(checker);
 		free(buf);
 		ret = get_next_line(0, &buf);
 		if (buf[0] == '\0')
@@ -37,7 +35,7 @@ int		read_n_sort(t_check *checker)
 	return (0);
 }
 
-int		checkifsort(t_check *checker)
+int	checkifsort(t_check *checker)
 {
 	unsigned long int	index;
 
@@ -53,7 +51,7 @@ int		checkifsort(t_check *checker)
 	return (0);
 }
 
-int		dispatcheur(t_check *checker, char *buf)
+int	dispatcheur(t_check *checker, char *buf)
 {
 	if (ft_strcmp(buf, "sa") == 0)
 		return (swapa(checker));
@@ -80,7 +78,7 @@ int		dispatcheur(t_check *checker, char *buf)
 	return (-1);
 }
 
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_check				checkerr;
 	int					pin;
@@ -89,14 +87,9 @@ int		main(int argc, char **argv)
 	if (argc == 1)
 		return (0);
 	checkerr.flag_v = 0;
-	// if (ft_strcmp(argv[1], "-v") == 0)
-	// {
-	// 	checkerr.flag_v = 1;
-	// 	argv += 1;
-	// 	argc--;
-	// }
 	pin = stocktableau(&checkerr, argc, argv);
-	if ((pin2 = checkargs(&checkerr, pin)) == 0)
+	pin2 = checkargs(&checkerr, pin);
+	if (pin2 == 0)
 	{
 		free(checkerr.a);
 		free(checkerr.b);

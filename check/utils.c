@@ -12,7 +12,7 @@
 
 #include "../inc/checker.h"
 
-int		findargs(int argc, char **argv, t_check *checker)
+int	findargs(int argc, char **argv, t_check *checker)
 {
 	checker->pin = 0;
 	checker->exit = 0;
@@ -21,8 +21,8 @@ int		findargs(int argc, char **argv, t_check *checker)
 		checker->exit++;
 		while (argv[checker->index][checker->pin])
 		{
-			if ((argv[checker->index][checker->pin] < '0' ||
-			argv[checker->index][checker->pin] > '9')
+			if ((argv[checker->index][checker->pin] < '0'
+				||argv[checker->index][checker->pin] > '9')
 			&& ((argv[checker->index][checker->pin] != ' ')
 			&& (argv[checker->index][checker->pin] != '-')))
 			{
@@ -41,7 +41,7 @@ int		findargs(int argc, char **argv, t_check *checker)
 	return (checker->exit);
 }
 
-int		filltab(t_check *checker, int argc, char **argv)
+int	filltab(t_check *checker, int argc, char **argv)
 {
 	long long int	num;
 	int				falsearg;
@@ -67,7 +67,7 @@ int		filltab(t_check *checker, int argc, char **argv)
 	return (0);
 }
 
-int		stocktableau(t_check *checker, int argc, char **argv)
+int	stocktableau(t_check *checker, int argc, char **argv)
 {
 	checker->index2 = 0;
 	checker->index = 1;
@@ -86,7 +86,7 @@ int		stocktableau(t_check *checker, int argc, char **argv)
 	return (0);
 }
 
-int		stockmorenum(t_check *checker, char **argv,
+int	stockmorenum(t_check *checker, char **argv,
 				int index, int index2)
 {
 	int				pin;
@@ -111,10 +111,10 @@ int		stockmorenum(t_check *checker, char **argv,
 	return (0);
 }
 
-int		checksamenum(t_check *checker)
+int	checksamenum(t_check *checker)
 {
-	unsigned long int index;
-	unsigned long int index2;
+	unsigned long int	index;
+	unsigned long int	index2;
 
 	index = 0;
 	index2 = 0;
