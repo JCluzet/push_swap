@@ -15,7 +15,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 
 typedef struct s_check
 {
@@ -33,7 +32,6 @@ typedef struct s_check
 	int							pos_of_num;
 	int							smallest_a;
 	int							smallest_b;
-	int							nb_under;
 	unsigned long int			pos_a;
 	unsigned long int			pos_b;
 	unsigned long int			nb_of_chunk;
@@ -54,27 +52,17 @@ int								stockmorenum(t_check *checker, char **argv,
 long long int					ft_atoi(const char *str);
 int								reverse_or_rotate(t_check *checker,
 									int nb, int a);
-void							reverse_maybe_more(t_check *checker, int chunk);
 int								reverse_rotate_decided(t_check *checker, int nb);
 void							pre_sort_for_chunk(t_check *checker);
-void							writetab(t_check *checker);
 int								findalgo(t_check *checker);
 void							sort_less_40_numbers(t_check *checker);
 void							find_med_chunk(t_check *checker);
-int								numcheck(char *str);
-int								whereis_notsort(t_check *checker);
-int								checkif_b_sort(t_check *checker);
-void							biggestnumber_forb(t_check *checker);
 void							sortmultinumbers_2(t_check *checker, int chunk);
-void							sortb_toa(t_check *checker);
 int								checkifsort(t_check *checker);
-void							sorta(t_check *checker);
 int								checksamenum(t_check *checker);
 void							sort2numbers(t_check *checker);
 void							sort3numbers(t_check *checker);
 void							my_putstr(char *str);
-int								firstswap(t_check *checker);
-void							push_numa_to_b(t_check *checker, int i);
 void							sortmultinumbers(t_check *checker);
 void							smallestnumber(t_check *checker);
 int								swapa(t_check *checker);

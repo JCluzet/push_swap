@@ -121,8 +121,3 @@ int	main(int argc, char **argv)
 	free(checkerr.b);
 	return (0);
 }
-
-// Normer avec la V3
-// Check les leaks
-// Check sur la VM
-// Optimiser encore +
