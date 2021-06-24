@@ -24,7 +24,7 @@ SRC =				check/main.c \
 					check/GNL/get_next_line_utils.c \
 					check/GNL/get_next_line.c \
 					check/pushnswap.c \
-					check/rotate.c \
+					check/rotate.c
 
 SRC_2 =				pushswap/main.c \
 					pushswap/utils.c \
@@ -32,7 +32,11 @@ SRC_2 =				pushswap/main.c \
 					pushswap/rotate.c \
 					pushswap/pushandswap.c \
 					pushswap/sort_per_num.c \
-					pushswap/rr_rrr.c
+					pushswap/rr_rrr.c \
+					pushswap/sort_multi_nb.c \
+					pushswap/sort_multi_nb_utils.c \
+					pushswap/sort_multi_nb_2.c \
+					pushswap/chunk_sort.c
 
 
 OBJ_NAME = $(SRC:.c=.o)
