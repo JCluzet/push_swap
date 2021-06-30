@@ -6,7 +6,7 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:15:15 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/06/24 18:03:16 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/07/01 01:01:54 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_check
 	int							*a;
 	int							*b;
 	int							*chunk;
+	int							checkmalloc;
 	unsigned long int			max_a;
 	unsigned long int			max_b;
 	int							nb;

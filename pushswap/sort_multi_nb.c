@@ -6,7 +6,7 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:14:44 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/06/24 16:27:33 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/07/01 00:56:37 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,6 @@ int	reverse_rotate_decided(t_check *checker, int nb)
 
 int	make_b_ready_for_num(t_check *checker, int nb)
 {
-	int	i;
-
-	i = 0;
 	if (checker->max_b < 2)
 		return (0);
 	if (next_back(checker, nb) == -1)

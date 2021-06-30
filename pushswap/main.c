@@ -6,7 +6,7 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:14:34 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/06/23 16:16:03 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/07/01 01:02:34 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ int	findalgo(t_check *checker)
 int	filltab(t_check *checker, int argc, char **argv)
 {
 	long long int	num;
-	int				falsearg;
 
-	falsearg = -1;
 	while (checker->index < argc - 1)
 	{
 		num = ft_atoi(argv[checker->index + 1]);
@@ -102,6 +100,7 @@ int	main(int argc, char **argv)
 	int			pin;
 	int			pin2;
 
+	checkerr.checkmalloc = 0;
 	if (argc == 1)
 		my_putstr("Error\nMissing arguments");
 	if (argc == 1)
@@ -119,5 +118,7 @@ int	main(int argc, char **argv)
 	findalgo(&checkerr);
 	free(checkerr.a);
 	free(checkerr.b);
+	if (checkerr.checkmalloc != 0)
+		free(checkerr.chunk);
 	return (0);
 }

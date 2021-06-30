@@ -6,7 +6,7 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:14:57 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/06/08 20:23:34 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/07/01 01:02:50 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	attribute_chunk(t_check *checker)
 {
 	checker->chunk = malloc(checker->nb_of_chunk * sizeof(int));
+	checker->checkmalloc = 1;
 	if (checker->nb_of_chunk == 8)
 	{
 		checker->chunk[0] = checker->b[0];

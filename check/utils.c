@@ -6,7 +6,7 @@
 /*   By: jcluzet <jo@cluzet.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 02:15:34 by jcluzet           #+#    #+#             */
-/*   Updated: 2021/04/29 17:59:31 by jcluzet          ###   ########.fr       */
+/*   Updated: 2021/07/01 00:54:45 by jcluzet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,7 @@ int	findargs(int argc, char **argv, t_check *checker)
 int	filltab(t_check *checker, int argc, char **argv)
 {
 	long long int	num;
-	int				falsearg;
 
-	falsearg = -1;
 	while (checker->index < argc - 1)
 	{
 		num = ft_atoi(argv[checker->index + 1]);
